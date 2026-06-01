@@ -1,10 +1,9 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
-import { readFile } from 'node:fs/promises'
-import path from 'node:path'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { InvestorLogout } from '@/components/investor-logout'
+import { getInvestorJson } from '@/lib/investor-blob'
 import { FileText, FileSpreadsheet, Presentation, FileBox, ArrowRight, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -18,24 +17,16 @@ export const metadata: Metadata = {
 export const dynamic = 'force-dynamic'
 export const runtime = 'nodejs'
 
-// Confidential numbers live ONLY in the gitignored investor-assets/ dir, never
-// in the (public) repo source. Read at runtime; fall back gracefully if absent.
+// Confidential numbers live ONLY in the private Vercel Blob store, never in the
+// (public) repo source. Read server-side at runtime; fall back if unavailable.
 type Metric = { value: string; label: string; sub: string }
 type Financial = { metric: string; y: string[] }
 type Round = { round: string; year: string; raise: string; post: string; use: string }
 type Ask = { raise: string; seriesA: string; seriesAWindow: string }
 type InvestorData = { ask: Ask; metrics: Metric[]; financials: Financial[]; rounds: Round[] }
 
-async function loadData(): Promise<InvestorData | null> {
-    try {
-        const raw = await readFile(
-            path.join(process.cwd(), 'investor-assets', 'investor-data.json'),
-            'utf8',
-        )
-        return JSON.parse(raw) as InvestorData
-    } catch {
-        return null
-    }
+function loadData(): Promise<InvestorData | null> {
+    return getInvestorJson<InvestorData>('investor-data.json')
 }
 
 const team = [
