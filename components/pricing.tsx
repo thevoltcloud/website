@@ -52,8 +52,14 @@ export default function Pricing() {
                                 Reserved
                             </button>
                         </div>
-                        <div className="mt-3 text-center text-xs">
-                            <span className="text-primary font-medium">Save up to 60%</span> on 36-month reserved capacity
+                        <div className="text-muted-foreground mt-3 text-center text-xs">
+                            {term === 'reserved' ? (
+                                <>
+                                    <span className="text-primary font-medium">Save up to 60%</span> on 36-month reserved capacity
+                                </>
+                            ) : (
+                                'Pay-as-you-go, billed monthly. No commitment.'
+                            )}
                         </div>
                     </div>
                 </div>
