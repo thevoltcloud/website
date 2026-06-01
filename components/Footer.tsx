@@ -1,7 +1,5 @@
 import { Logo } from '@/components/logo'
-import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
+import { NewsletterForm } from '@/components/newsletter-form'
 import Link from 'next/link'
 import { SITE } from '@/lib/site'
 
@@ -149,29 +147,7 @@ export default function FooterSection() {
                     </div>
 
                     <div className="md:col-span-2">
-                        <form className="ml-auto w-full space-y-4 md:max-w-xs">
-                            <Label
-                                className="block text-sm font-medium"
-                                htmlFor="email">
-                                Subscribe to our newsletter
-                            </Label>
-                            <div className="flex gap-2">
-                                <Input
-                                    className="bg-background ring-foreground/10 h-8 border-transparent shadow ring-1"
-                                    placeholder="Your email"
-                                    type="email"
-                                    id="email"
-                                    required
-                                    name="email"
-                                />
-                                <Button
-                                    type="submit"
-                                    size="sm">
-                                    <span>Subscribe</span>
-                                </Button>
-                            </div>
-                            <p className="text-muted-foreground text-xs">Get the latest product news and behind the scenes updates. Unsubscribe at any time.</p>
-                        </form>
+                        <NewsletterForm />
                     </div>
                 </div>
 
