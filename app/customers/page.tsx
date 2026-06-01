@@ -1,36 +1,120 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/Button";
+import { Landmark, HeartPulse, Building2, Sparkles } from "lucide-react";
+import StatsSection from "@/components/stats-4";
+import CallToAction from "@/components/call-to-action";
+import {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+} from "@/components/ui/card";
 
 export const metadata: Metadata = {
   title: "Customers",
-  description: "Who Volt is built for — regulated and sovereign-conscious organizations.",
+  description:
+    "Who Volt is built for — regulated and sovereign-conscious organizations.",
 };
 
+const verticals = [
+  {
+    title: "Financial services",
+    icon: Landmark,
+    description:
+      "Keep model inference and customer data inside the regulated boundary, served in-metro.",
+    points: [
+      "Zero egress — data residency is structural, not contractual",
+      "Immutable audit log per request, tied to tenant identity",
+      "Sovereign tier with pod-pinned inference and attestation",
+    ],
+  },
+  {
+    title: "Healthcare",
+    icon: HeartPulse,
+    description:
+      "PHI never leaves the metro. Attestation answers auditor questions.",
+    points: [
+      "In-region serving with no cross-border transfer",
+      "Workload identity via SPIRE/SPIFFE SVIDs",
+      "Cilium default-deny egress at L3/L4",
+    ],
+  },
+  {
+    title: "Public sector",
+    icon: Building2,
+    description:
+      "Sovereign-by-default deployments with a FedRAMP path.",
+    points: [
+      "Zero-egress boundary maps to SC-7 boundary protection",
+      "Measured-boot attestation on dedicated bare-metal (Vault)",
+      "Western-origin Standard catalog by default",
+    ],
+  },
+  {
+    title: "AI-native products",
+    icon: Sparkles,
+    description:
+      "Frontier open-weights models at Bedrock-beating prices, without egress surprises.",
+    points: [
+      "Llama 70B from $0.95/M — OpenAI-compatible drop-in",
+      "Dedicated GPU leases scoped into your namespace",
+      "25+ metro pods, 99.9% uptime SLA",
+    ],
+  },
+];
+
 export default function Customers() {
-  const verticals = [
-    ["Financial services", "Keep model inference and customer data inside the regulated boundary, in-metro."],
-    ["Healthcare", "PHI never leaves the metro; attestation supports your auditors' questions."],
-    ["Public sector", "Sovereign-by-default deployments with a FedRAMP path."],
-    ["AI-native products", "Frontier open-weights models at Bedrock-beating prices, without egress surprises."],
-  ];
   return (
-    <div className="mx-auto max-w-4xl px-6 py-20">
-      <h1 className="text-4xl font-bold text-volt-paper">Built for regulated workloads</h1>
-      <p className="mt-3 max-w-2xl text-volt-silver">
-        Volt is for organizations that need frontier inference in production and cannot let data leave a
-        jurisdiction. We are launching with anchor customers — design-partner slots are open.
-      </p>
-      <div className="mt-10 grid gap-6 md:grid-cols-2">
-        {verticals.map(([title, body]) => (
-          <div key={title} className="rounded-xl border border-white/10 bg-white/5 p-6">
-            <h2 className="font-semibold text-volt-paper">{title}</h2>
-            <p className="mt-2 text-sm text-volt-silver">{body}</p>
+    <main>
+      <section className="pt-32 pb-12">
+        <div className="mx-auto max-w-5xl px-6">
+          <h1 className="text-4xl font-bold tracking-tight md:text-5xl">
+            Built for regulated workloads
+          </h1>
+          <p className="mt-4 max-w-2xl text-muted-foreground text-balance">
+            Volt is for organizations that need frontier inference in
+            production and cannot let data leave a jurisdiction. We are
+            launching with anchor customers, and design-partner slots are open.
+          </p>
+        </div>
+      </section>
+
+      <StatsSection />
+
+      <section className="py-16 md:py-24">
+        <div className="mx-auto max-w-5xl px-6">
+          <div className="grid gap-6 md:grid-cols-2">
+            {verticals.map((vertical) => {
+              const Icon = vertical.icon;
+              return (
+                <Card key={vertical.title}>
+                  <CardHeader>
+                    <div className="bg-muted mb-3 flex size-10 items-center justify-center rounded-lg">
+                      <Icon className="size-5" aria-hidden />
+                    </div>
+                    <CardTitle>{vertical.title}</CardTitle>
+                    <CardDescription>{vertical.description}</CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="text-muted-foreground space-y-2 text-sm">
+                      {vertical.points.map((point) => (
+                        <li key={point} className="flex gap-2">
+                          <span aria-hidden className="text-primary">
+                            &middot;
+                          </span>
+                          <span>{point}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
-        ))}
-      </div>
-      <div className="mt-10">
-        <Button href="/contact">Become a design partner</Button>
-      </div>
-    </div>
+        </div>
+      </section>
+
+      <CallToAction />
+    </main>
   );
 }

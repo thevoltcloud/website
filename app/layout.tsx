@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { Nav } from "@/components/Nav";
-import { Footer } from "@/components/Footer";
+import { ThemeProvider } from "@/components/theme-provider";
+import HeaderOne from "@/components/header";
+import FooterSection from "@/components/Footer";
 import { SITE } from "@/lib/site";
 import "./globals.css";
 
@@ -22,11 +23,18 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body>
-        <Nav />
-        <main className="min-h-[60vh]">{children}</main>
-        <Footer />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <HeaderOne />
+          <main className="min-h-[60vh]">{children}</main>
+          <FooterSection />
+        </ThemeProvider>
       </body>
     </html>
   );

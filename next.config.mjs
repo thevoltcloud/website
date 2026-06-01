@@ -1,8 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // Type errors fail the build; lint is handled by typecheck in CI.
-  eslint: { ignoreDuringBuilds: true },
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "avatars.githubusercontent.com" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "github.com" },
+    ],
+  },
 };
 
 export default nextConfig;

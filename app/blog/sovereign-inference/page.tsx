@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Button } from "@/components/Button";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Why sovereign inference is an architecture problem",
@@ -8,12 +9,12 @@ export const metadata: Metadata = {
 
 export default function Post() {
   return (
-    <article className="mx-auto max-w-2xl px-6 py-20">
-      <p className="text-xs uppercase tracking-widest text-volt-silver">2026-06-01</p>
-      <h1 className="mt-2 text-3xl font-bold text-volt-paper">
+    <article className="mx-auto max-w-2xl px-6 pb-24 pt-32">
+      <p className="text-muted-foreground text-xs uppercase tracking-widest">2026-06-01</p>
+      <h1 className="text-foreground mt-2 text-3xl font-bold text-balance">
         Why sovereign inference is an architecture problem, not a policy one
       </h1>
-      <div className="mt-8 space-y-5 text-volt-silver">
+      <div className="text-muted-foreground mt-8 space-y-5 leading-relaxed">
         <p>
           Most &quot;data residency&quot; offerings are contractual: a clause says your data stays in a region,
           and you trust the provider&apos;s controls. That works until it doesn&apos;t — a misrouted request,
@@ -34,7 +35,9 @@ export default function Post() {
         </p>
       </div>
       <div className="mt-10">
-        <Button href="/contact">Talk to us about sovereign deployments</Button>
+        <Button asChild>
+          <Link href="/contact">Talk to us about sovereign deployments</Link>
+        </Button>
       </div>
     </article>
   );
