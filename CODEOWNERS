@@ -1,0 +1,4 @@
+# CODEOWNERS — thevoltcloud/website
+# Docs/marketing policy: 1 reviewer. Interim owner CPO (Hitomi Mizugaki) + CEO
+# until a marketing hire (post Series A).
+*                   @ar4mirez
