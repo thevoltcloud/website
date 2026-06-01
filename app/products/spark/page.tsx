@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { SITE } from '@/lib/site'
 import { Button } from '@/components/ui/button'
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card'
 import CallToAction from '@/components/call-to-action'
@@ -64,7 +65,7 @@ export default function SparkPage() {
                             <Link href="/contact">Request access</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline">
-                            <Link href="https://docs.voltcloud.ai">Docs</Link>
+                            <Link href={SITE.docsUrl}>Docs</Link>
                         </Button>
                     </div>
                 </div>

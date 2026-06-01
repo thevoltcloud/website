@@ -1,6 +1,7 @@
 import React from 'react'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
+import { SITE } from '@/lib/site'
 
 export default function Contact() {
     return (
@@ -34,7 +35,7 @@ export default function Contact() {
                                     size="sm"
                                     asChild
                                     className="w-fit">
-                                    <Link href="https://docs.voltcloud.ai">Read the docs</Link>
+                                    <Link href={SITE.docsUrl}>Read the docs</Link>
                                 </Button>
                                 <Button
                                     variant="ghost"
@@ -66,9 +67,9 @@ export default function Contact() {
                         <div className="flex flex-col p-6">
                             <h2 className="text-muted-foreground mb-2 text-sm">Status</h2>
                             <Link
-                                href="https://status.voltcloud.ai"
+                                href={SITE.statusUrl}
                                 className="hover:decoration-primary font-medium hover:underline">
-                                status.voltcloud.ai
+                                {SITE.statusUrl.replace(/^https?:\/\//, '')}
                             </Link>
                         </div>
                         <div className="flex flex-col p-6">

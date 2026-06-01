@@ -1,6 +1,7 @@
 import { Card } from '@/components/ui/card'
 import Link from 'next/link'
 import * as React from 'react'
+import { SITE } from '@/lib/site'
 import { Plug2, Boxes, Gauge, Workflow, Fingerprint, Network, FileCode2, Terminal } from 'lucide-react'
 
 export default function IntegrationsSection() {
@@ -15,28 +16,28 @@ export default function IntegrationsSection() {
                     <IntegrationCard
                         title="OpenAI-compatible API"
                         description="Spark is a drop-in OpenAI endpoint. Change the base URL and key — your existing SDK calls just work."
-                        link="https://docs.voltcloud.ai">
+                        link={SITE.docsUrl}>
                         <Plug2 className="text-primary" />
                     </IntegrationCard>
 
                     <IntegrationCard
                         title="Kubernetes"
                         description="Kubernetes-native by design. Forge leases land as scoped kubeconfigs into a dedicated namespace."
-                        link="https://docs.voltcloud.ai">
+                        link={SITE.docsUrl}>
                         <Boxes className="text-primary" />
                     </IntegrationCard>
 
                     <IntegrationCard
                         title="vLLM"
                         description="vLLM-direct serving at the data plane for high-throughput open-weights inference, with llm-d as the stack hardens."
-                        link="https://docs.voltcloud.ai">
+                        link={SITE.docsUrl}>
                         <Gauge className="text-primary" />
                     </IntegrationCard>
 
                     <IntegrationCard
                         title="KServe"
                         description="CNCF KServe drives model lifecycle and autoscaling across every pod. Contributed back upstream."
-                        link="https://docs.voltcloud.ai">
+                        link={SITE.docsUrl}>
                         <Workflow className="text-primary" />
                     </IntegrationCard>
 
@@ -57,14 +58,14 @@ export default function IntegrationsSection() {
                     <IntegrationCard
                         title="Terraform"
                         description="Provision pods, namespaces, and leases as code. Reproducible, auditable infrastructure across metros."
-                        link="https://docs.voltcloud.ai">
+                        link={SITE.docsUrl}>
                         <FileCode2 className="text-primary" />
                     </IntegrationCard>
 
                     <IntegrationCard
                         title="voltctl CLI"
                         description="Manage tenants, models, and reserved capacity from the command line. Scriptable and CI-friendly."
-                        link="https://docs.voltcloud.ai">
+                        link={SITE.docsUrl}>
                         <Terminal className="text-primary" />
                     </IntegrationCard>
                 </div>

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import Link from 'next/link'
+import { SITE } from '@/lib/site'
 
 const links = [
     {
@@ -31,7 +32,7 @@ const links = [
         items: [
             {
                 title: 'Docs',
-                href: 'https://docs.voltcloud.ai',
+                href: SITE.docsUrl,
             },
             {
                 title: 'Blog',
@@ -39,7 +40,7 @@ const links = [
             },
             {
                 title: 'Status',
-                href: 'https://status.voltcloud.ai',
+                href: SITE.statusUrl,
             },
         ],
     },

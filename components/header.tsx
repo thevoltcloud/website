@@ -10,6 +10,7 @@ import { Menu, X, Cpu, Zap, Lock, ShieldCheck, BadgeCheck, Building2, BookOpen, 
 import { useMedia } from '@/hooks/use-media'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { cn } from '@/lib/utils'
+import { SITE } from '@/lib/site'
 
 interface FeatureLink {
     href: string
@@ -68,7 +69,7 @@ const useCases: FeatureLink[] = [
 ]
 
 const contentLinks: FeatureLink[] = [
-    { name: 'Docs', href: 'https://docs.voltcloud.ai', icon: <BookOpen className="stroke-foreground fill-purple-500/15" /> },
+    { name: 'Docs', href: SITE.docsUrl, icon: <BookOpen className="stroke-foreground fill-purple-500/15" /> },
     { name: 'Blog', href: '/blog', icon: <Notebook className="stroke-foreground fill-zinc-500/15" /> },
 ]
 
@@ -82,7 +83,7 @@ const mobileLinks: MobileLink[] = [
         links: [...useCases, ...contentLinks],
     },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Docs', href: 'https://docs.voltcloud.ai' },
+    { name: 'Docs', href: SITE.docsUrl },
 ]
 
 export default function HeaderOne() {
@@ -132,7 +133,7 @@ export default function HeaderOne() {
                                         asChild
                                         variant="outline"
                                         size="sm">
-                                        <Link href="https://docs.voltcloud.ai">
+                                        <Link href={SITE.docsUrl}>
                                             <span>Docs</span>
                                         </Link>
                                     </Button>
@@ -296,7 +297,7 @@ const NavMenu = () => {
                     <NavigationMenuLink
                         asChild
                         className={navigationMenuTriggerStyle()}>
-                        <Link href="https://docs.voltcloud.ai">Docs</Link>
+                        <Link href={SITE.docsUrl}>Docs</Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
             </NavigationMenuList>

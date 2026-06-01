@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { Card } from '@/components/ui/card'
 import { LogoIcon } from '@/components/logo'
+import { SITE } from '@/lib/site'
 
 export default function CallToAction() {
     return (
@@ -22,7 +23,7 @@ export default function CallToAction() {
                                 <Link href="/contact">Request access</Link>
                             </Button>
                             <Button asChild variant="outline">
-                                <Link href="https://docs.voltcloud.ai">Read the docs</Link>
+                                <Link href={SITE.docsUrl}>Read the docs</Link>
                             </Button>
                         </div>
                     </div>

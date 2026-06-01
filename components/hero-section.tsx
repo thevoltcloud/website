@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { ArrowUp, Globe, Play, Plus, Sparkle } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
+import { SITE } from '@/lib/site'
 
 export default function HeroSection() {
     const { scrollY } = useScroll()
@@ -31,7 +32,7 @@ export default function HeroSection() {
                                         asChild
                                         variant="outline"
                                         className="pl-3.5">
-                                        <Link href="https://docs.voltcloud.ai">
+                                        <Link href={SITE.docsUrl}>
                                             <Play className="fill-foreground !size-3" />
                                             <span className="text-nowrap">Read the docs</span>
                                         </Link>

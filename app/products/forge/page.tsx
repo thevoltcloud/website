@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { SITE } from '@/lib/site'
 import { Cpu, KeySquare, Calendar, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -70,7 +71,7 @@ export default function Page() {
               <Link href="/contact">Request access</Link>
             </Button>
             <Button asChild variant="outline">
-              <Link href="https://docs.voltcloud.ai">Read the docs</Link>
+              <Link href={SITE.docsUrl}>Read the docs</Link>
             </Button>
           </div>
         </div>
