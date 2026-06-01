@@ -153,13 +153,15 @@ export default function FooterSection() {
 
                 <div className="flex flex-wrap justify-between gap-4 border-t py-8">
                     <span className="text-muted-foreground text-sm">© {new Date().getFullYear()} Volt. All rights reserved.</span>
-                    <div className="ring-foreground/5 bg-card flex items-center gap-2 rounded-full border border-transparent py-1 pl-2 pr-4 shadow ring-1">
+                    <Link
+                        href={SITE.statusUrl}
+                        className="ring-foreground/5 bg-card hover:bg-card/70 flex items-center gap-2 rounded-full border border-transparent py-1 pl-2 pr-4 shadow ring-1 transition-colors">
                         <div className="relative flex size-3">
                             <span className="duration-1500 absolute inset-0 block size-full animate-pulse rounded-full bg-emerald-100"></span>
                             <span className="relative m-auto block size-1 rounded-full bg-emerald-500"></span>
                         </div>
                         <span className="text-sm">All Systems Normal</span>
-                    </div>
+                    </Link>
                 </div>
             </div>
         </footer>

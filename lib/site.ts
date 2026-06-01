@@ -8,7 +8,10 @@
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://voltcloud.ai";
 const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL ?? "https://docs.voltcloud.ai";
-const STATUS_URL = process.env.NEXT_PUBLIC_STATUS_URL ?? "https://status.voltcloud.ai";
+// Self-hosted status page lives at /status on the marketing site (brand-
+// consistent). Override with NEXT_PUBLIC_STATUS_URL to point at a dedicated
+// status subdomain later.
+const STATUS_URL = process.env.NEXT_PUBLIC_STATUS_URL ?? `${SITE_URL}/status`;
 
 export const SITE = {
   name: "Volt",
