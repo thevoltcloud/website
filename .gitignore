@@ -8,3 +8,7 @@ next-env.d.ts
 .vercel
 .gstack/
 *.tsbuildinfo
+
+# Confidential investor data room — never commit to the (public) repo.
+# Shipped to the Vercel deployment via .vercelignore instead. See app/api/investors/download.
+investor-assets/

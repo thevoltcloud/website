@@ -1,0 +1,14 @@
+# When this file exists, Vercel uses it INSTEAD of .gitignore to decide what to
+# upload. That's deliberate: investor-assets/ is gitignored (kept out of the
+# public repo) but is NOT listed here, so it still ships to the Vercel build and
+# is served only through the gated /api/investors/download route.
+node_modules
+.next
+out
+.git
+.gstack
+.vercel
+*.log
+*.tsbuildinfo
+.DS_Store
+.env*.local

@@ -59,6 +59,10 @@ const links = [
                 title: 'Customers',
                 href: '/customers',
             },
+            {
+                title: 'Investors',
+                href: '/investors',
+            },
         ],
     },
 ]
