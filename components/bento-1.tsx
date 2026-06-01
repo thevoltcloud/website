@@ -4,7 +4,7 @@ import * as React from 'react'
 
 export default function BentoOne() {
     return (
-        <section className="@container py-24">
+        <section className="@container py-16 md:py-24">
             <h2 className="sr-only">Capabilities</h2>
             <div className="mx-auto w-full max-w-5xl px-6">
                 <div className="not-dark:*:bg-card/50 @xl:grid-cols-2 @3xl:grid-cols-6 grid gap-3">

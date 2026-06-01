@@ -31,7 +31,7 @@ const members: Member[] = [
 
 export default function TeamSection() {
     return (
-        <section className="bg-background py-16 md:py-32">
+        <section className="bg-background py-16 md:py-24">
             <div className="@container mx-auto max-w-5xl px-6">
                 <div>
                     <h2 className="text-foreground max-w-xs text-balance text-4xl font-semibold">The team behind Volt</h2>

@@ -6,7 +6,7 @@ import { Plug2, Boxes, Gauge, Workflow, Fingerprint, Network, FileCode2, Termina
 
 export default function IntegrationsSection() {
     return (
-        <section className="bg-background py-24">
+        <section className="bg-background py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-6">
                 <div className="mx-auto mb-12 max-w-2xl text-center">
                     <h2 className="text-balance text-3xl font-semibold lg:text-4xl">Built on the tools your team already runs</h2>

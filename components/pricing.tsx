@@ -25,7 +25,7 @@ export default function Pricing() {
     }
 
     return (
-        <section className="bg-background relative py-16 md:py-32">
+        <section className="bg-background relative py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-6">
                 <div className="mx-auto max-w-2xl text-center">
                     <h2 className="text-balance text-3xl font-bold md:text-4xl lg:text-5xl lg:tracking-tight">Pricing that scales from token to bare metal</h2>

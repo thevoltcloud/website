@@ -3,7 +3,7 @@ import { LogoIcon } from '@/components/logo'
 
 export default function TestimonialsSection() {
     return (
-        <section className="bg-background py-16 md:py-32">
+        <section className="bg-background py-16 md:py-24">
             <div className="mx-auto max-w-5xl px-6">
                 <div className="mx-auto max-w-2xl">
                     <Quote
