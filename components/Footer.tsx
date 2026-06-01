@@ -31,7 +31,7 @@ const links = [
         items: [
             {
                 title: 'Docs',
-                href: 'https://docs.volt.cloud',
+                href: 'https://docs.voltcloud.ai',
             },
             {
                 title: 'Blog',
@@ -39,7 +39,7 @@ const links = [
             },
             {
                 title: 'Status',
-                href: 'https://status.volt.cloud',
+                href: 'https://status.voltcloud.ai',
             },
         ],
     },

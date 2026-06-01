@@ -1,9 +1,6 @@
-import { CurrencyIllustration } from "@/components/ui/illustrations/currency-illustration"
-import { ReplyIllustration } from "@/components/ui/illustrations/reply-illustration"
-import { NotificationIllustration } from "@/components/ui/illustrations/notification-illustration"
 import { Card } from '@/components/ui/card'
-import { VisualizationIllustration } from "@/components/ui/illustrations/visualization-illustration"
-import { PollIllustration } from "@/components/ui/illustrations/poll-illustration"
+import { Lock, ShieldCheck, Cpu, Plug2, Boxes } from 'lucide-react'
+import * as React from 'react'
 
 export default function BentoOne() {
     return (
@@ -16,54 +13,51 @@ export default function BentoOne() {
                             <h3 className="text-foreground font-semibold">Zero Egress</h3>
                             <p className="text-muted-foreground mt-3">Data residency is structural, not contractual. Zero ingress, zero egress, zero inter-pod transfer across every SKU.</p>
                         </div>
-                        <div className="bg-linear-to-b relative -m-8 flex items-end p-8">
-                            <Stripes />
-                            <NotificationIllustration variant="mixed" />
-                        </div>
+                        <Visual icon={Lock} />
                     </Card>
                     <Card className="@3xl:col-span-2 grid grid-rows-[auto_1fr] space-y-8 overflow-hidden rounded-2xl p-8">
                         <div>
                             <h3 className="text-foreground font-semibold">Cryptographic Attestation</h3>
                             <p className="text-muted-foreground mt-3">Measured-boot attestation per node and SPIFFE workload identity. Prove where your inference ran, signed end to end.</p>
                         </div>
-                        <div className="bg-linear-to-b relative -m-8 flex items-end p-8">
-                            <Stripes />
-                            <CurrencyIllustration />
-                        </div>
+                        <Visual icon={ShieldCheck} />
                     </Card>
                     <Card className="@3xl:col-span-2 grid grid-rows-[auto_1fr] gap-8 overflow-hidden rounded-2xl p-8">
                         <div>
                             <h3 className="text-foreground font-semibold">Multi-Vendor GPU</h3>
                             <p className="text-muted-foreground mt-3">NVIDIA B200 and L40S today. AMD MI355X and Intel Gaudi 3 as the stack hardens. One control plane across all of it.</p>
                         </div>
-                        <div className="bg-linear-to-b relative -m-8 flex items-end p-8">
-                            <Stripes />
-                            <ReplyIllustration className="relative mt-0 w-full" />
-                        </div>
+                        <Visual icon={Cpu} />
                     </Card>
                     <Card className="@3xl:col-span-2 group grid grid-rows-[auto_1fr] gap-8 overflow-hidden rounded-2xl p-8">
                         <div>
                             <h3 className="text-foreground font-semibold">OpenAI-Compatible API</h3>
                             <p className="text-muted-foreground mt-3">A drop-in endpoint. Change the base URL and key, keep your existing SDKs and tooling unchanged.</p>
                         </div>
-
-                        <div className="bg-linear-to-b relative -m-8 flex items-end p-8">
-                            <Stripes />
-                            <PollIllustration />
-                        </div>
+                        <Visual icon={Plug2} />
                     </Card>
                     <Card className="@xl:col-span-2 @3xl:col-span-4 grid grid-rows-[auto_1fr] gap-8 overflow-hidden rounded-2xl p-8">
                         <div>
                             <h3 className="text-foreground font-semibold">Kubernetes-Native Control Plane</h3>
                             <p className="text-muted-foreground mt-3 text-balance">CNCF-native by design: llm-d, KServe, Kueue, Cilium, and SPIRE. Scoped kubeconfig into your namespace, contributed back upstream.</p>
                         </div>
-                        <VisualizationIllustration />
+                        <Visual icon={Boxes} />
                     </Card>
                 </div>
             </div>
         </section>
     )
 }
+
+const Visual = ({ icon: Icon }: { icon: React.ComponentType<{ className?: string; strokeWidth?: number }> }) => (
+    <div className="bg-linear-to-b relative -m-8 mt-0 flex items-center justify-center p-10">
+        <Stripes />
+        <Icon
+            className="text-primary/85 relative size-16"
+            strokeWidth={1.25}
+        />
+    </div>
+)
 
 const Stripes = () => (
     <div

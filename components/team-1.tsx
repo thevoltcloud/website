@@ -12,19 +12,19 @@ const members: Member[] = [
     {
         name: 'Angel Ramirez',
         position: 'CEO · CNCF Ambassador, founder of Cuemby',
-        image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=1361&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: '/team/angel-ramirez.jpg',
         decoratorColors: 'from-purple-400 via-blue-400 to-amber-500',
     },
     {
         name: 'Cristher Castro',
         position: 'CCO · Talent, financial discipline, international ops',
-        image: 'https://images.unsplash.com/photo-1629559915090-ee09fc9787c1?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: '/team/cristher-castro.jpg',
         decoratorColors: 'from-purple-400 via-sky-400 to-emerald-500',
     },
     {
         name: 'Hitomi Mizugaki',
         position: 'CPO · Product, agile, customer growth',
-        image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1364&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+        image: '/team/hitomi-mizugaki.jpg',
         decoratorColors: 'from-teal-400 via-cyan-400 to-blue-500',
     },
 ]
@@ -41,7 +41,7 @@ export default function TeamSection() {
                             <div
                                 key={index}
                                 className="bg-card shadow-black/3 ring-border shadow-black/6.5 rounded-3xl p-2 shadow-xl ring-1">
-                                <div className="before:border-foreground/10 before:z-1 relative aspect-square overflow-hidden rounded-2xl before:absolute before:inset-0 before:rounded-2xl before:border">
+                                <div className="bg-muted before:border-foreground/10 before:z-1 relative aspect-square overflow-hidden rounded-2xl before:absolute before:inset-0 before:rounded-2xl before:border">
                                     <div
                                         aria-hidden
                                         className={cn('bg-linear-to-r z-1 opacity-6.5 pointer-events-none absolute inset-0 size-40 rounded-full mix-blend-overlay blur-2xl will-change-transform md:size-72', member.decoratorColors)}
@@ -50,8 +50,8 @@ export default function TeamSection() {
                                         src={member.image}
                                         alt={member.name}
                                         width={320}
-                                        height={540}
-                                        className="size-full object-cover object-top grayscale"
+                                        height={320}
+                                        className="relative z-10 size-full object-cover object-top"
                                     />
                                 </div>
                                 <div className="space-y-0.5 px-3 pb-2 pt-3">

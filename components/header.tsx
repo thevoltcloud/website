@@ -6,7 +6,7 @@ import { ModeToggle } from '@/components/mode-toggle'
 import React from 'react'
 import { useScroll, useMotionValueEvent } from 'motion/react'
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
-import { Headset, Menu, X, Shield, SquareActivity, Sparkles, Cpu, Gem, ShoppingBag, GraduationCap, BookOpen, Notebook, Croissant } from 'lucide-react'
+import { Menu, X, Cpu, Zap, Lock, ShieldCheck, BadgeCheck, Building2, BookOpen, Notebook } from 'lucide-react'
 import { useMedia } from '@/hooks/use-media'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { cn } from '@/lib/utils'
@@ -30,7 +30,7 @@ const features: FeatureLink[] = [
         href: '/products/spark',
         name: 'Volt Spark',
         description: 'Tokens-as-a-service · OpenAI-compatible',
-        icon: <Sparkles className="stroke-foreground fill-yellow-500/15" />,
+        icon: <Zap className="stroke-foreground fill-yellow-500/15" />,
     },
     {
         href: '/products/forge',
@@ -42,7 +42,7 @@ const features: FeatureLink[] = [
         href: '/products/vault',
         name: 'Volt Vault',
         description: 'Dedicated bare-metal · sovereign',
-        icon: <Shield className="stroke-foreground fill-blue-500/15" />,
+        icon: <Lock className="stroke-foreground fill-blue-500/15" />,
     },
 ]
 
@@ -51,24 +51,24 @@ const useCases: FeatureLink[] = [
         href: '/security',
         name: 'Security',
         description: 'Zero egress, workload identity, attestation',
-        icon: <SquareActivity className="stroke-foreground fill-emerald-500/25" />,
+        icon: <ShieldCheck className="stroke-foreground fill-emerald-500/25" />,
     },
     {
         href: '/compliance',
         name: 'Compliance',
         description: 'FedRAMP path · EU AI Act readiness',
-        icon: <Gem className="stroke-foreground fill-indigo-500/15" />,
+        icon: <BadgeCheck className="stroke-foreground fill-indigo-500/15" />,
     },
     {
         href: '/customers',
         name: 'Customers',
         description: 'Built for regulated workloads',
-        icon: <Headset className="stroke-foreground fill-pink-500/15" />,
+        icon: <Building2 className="stroke-foreground fill-pink-500/15" />,
     },
 ]
 
 const contentLinks: FeatureLink[] = [
-    { name: 'Docs', href: 'https://docs.volt.cloud', icon: <BookOpen className="stroke-foreground fill-purple-500/15" /> },
+    { name: 'Docs', href: 'https://docs.voltcloud.ai', icon: <BookOpen className="stroke-foreground fill-purple-500/15" /> },
     { name: 'Blog', href: '/blog', icon: <Notebook className="stroke-foreground fill-zinc-500/15" /> },
 ]
 
@@ -82,7 +82,7 @@ const mobileLinks: MobileLink[] = [
         links: [...useCases, ...contentLinks],
     },
     { name: 'Pricing', href: '/pricing' },
-    { name: 'Docs', href: 'https://docs.volt.cloud' },
+    { name: 'Docs', href: 'https://docs.voltcloud.ai' },
 ]
 
 export default function HeaderOne() {
@@ -132,7 +132,7 @@ export default function HeaderOne() {
                                         asChild
                                         variant="outline"
                                         size="sm">
-                                        <Link href="https://docs.volt.cloud">
+                                        <Link href="https://docs.voltcloud.ai">
                                             <span>Docs</span>
                                         </Link>
                                     </Button>
@@ -296,7 +296,7 @@ const NavMenu = () => {
                     <NavigationMenuLink
                         asChild
                         className={navigationMenuTriggerStyle()}>
-                        <Link href="https://docs.volt.cloud">Docs</Link>
+                        <Link href="https://docs.voltcloud.ai">Docs</Link>
                     </NavigationMenuLink>
                 </NavigationMenuItem>
             </NavigationMenuList>

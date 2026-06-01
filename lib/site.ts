@@ -1,5 +1,14 @@
 // Single source of marketing facts. Keep in sync with the product (pricing,
 // SKUs, taglines) — cross-checked against the brand identity + locked decisions.
+//
+// Brand domain is voltcloud.ai. Base URLs are env-overridable so a deploy can
+// run on another host (e.g. the interim volt.cuemby.cloud / docs.cuemby.cloud)
+// without a code change — set NEXT_PUBLIC_SITE_URL / NEXT_PUBLIC_DOCS_URL /
+// NEXT_PUBLIC_STATUS_URL in the deployment environment.
+
+const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://voltcloud.ai";
+const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL ?? "https://docs.voltcloud.ai";
+const STATUS_URL = process.env.NEXT_PUBLIC_STATUS_URL ?? "https://status.voltcloud.ai";
 
 export const SITE = {
   name: "Volt",
@@ -7,12 +16,12 @@ export const SITE = {
   tagline: "Run 70B models in your customer's metro. At Bedrock prices. Without your data leaving the city.",
   positioning:
     "For regulated and sovereign-conscious organizations that need frontier open-weights LLMs in production, Volt runs in the customer's metro with zero egress and cryptographic attestation.",
-  url: "https://volt.cloud",
-  docsUrl: "https://docs.volt.cloud",
-  statusUrl: "https://status.volt.cloud",
+  url: SITE_URL,
+  docsUrl: DOCS_URL,
+  statusUrl: STATUS_URL,
   githubUrl: "https://github.com/thevoltcloud",
-  contactEmail: "hello@volt.cloud",
-  securityEmail: "security@volt.cloud",
+  contactEmail: "hello@voltcloud.ai",
+  securityEmail: "security@voltcloud.ai",
 } as const;
 
 export interface Sku {

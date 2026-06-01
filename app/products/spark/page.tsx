@@ -31,7 +31,7 @@ const features = [
 const codeSample = `from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://api.volt.cloud/v1",
+    base_url="https://api.voltcloud.ai/v1",
     api_key="volt-...",
 )
 
@@ -64,7 +64,7 @@ export default function SparkPage() {
                             <Link href="/contact">Request access</Link>
                         </Button>
                         <Button asChild size="lg" variant="outline">
-                            <Link href="https://docs.volt.cloud">Docs</Link>
+                            <Link href="https://docs.voltcloud.ai">Docs</Link>
                         </Button>
                     </div>
                 </div>

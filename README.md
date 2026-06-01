@@ -1,6 +1,6 @@
 # Volt Website
 
-Source for [volt.cloud](https://volt.cloud) — the Volt marketing site. Next.js
+Source for [voltcloud.ai](https://voltcloud.ai) — the Volt marketing site. Next.js
 (App Router) + Tailwind, deployed on Vercel.
 
 ## Pages

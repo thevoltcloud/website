@@ -34,14 +34,14 @@ export default function Contact() {
                                     size="sm"
                                     asChild
                                     className="w-fit">
-                                    <Link href="https://docs.volt.cloud">Read the docs</Link>
+                                    <Link href="https://docs.voltcloud.ai">Read the docs</Link>
                                 </Button>
                                 <Button
                                     variant="ghost"
                                     size="sm"
                                     asChild
                                     className="text-primary w-fit">
-                                    <Link href="mailto:hello@volt.cloud">hello@volt.cloud</Link>
+                                    <Link href="mailto:hello@voltcloud.ai">hello@voltcloud.ai</Link>
                                 </Button>
                             </div>
                         </div>
@@ -49,26 +49,26 @@ export default function Contact() {
                         <div className="flex flex-col p-6">
                             <h2 className="text-muted-foreground mb-2 text-sm">General</h2>
                             <Link
-                                href="mailto:hello@volt.cloud"
+                                href="mailto:hello@voltcloud.ai"
                                 className="hover:decoration-primary font-medium hover:underline">
-                                hello@volt.cloud
+                                hello@voltcloud.ai
                             </Link>
                         </div>
                         <div className="flex flex-col p-6">
                             <h2 className="text-muted-foreground mb-2 text-sm">Security</h2>
                             <Link
-                                href="mailto:security@volt.cloud"
+                                href="mailto:security@voltcloud.ai"
                                 className="hover:decoration-primary font-medium hover:underline">
-                                security@volt.cloud
+                                security@voltcloud.ai
                             </Link>
                         </div>
 
                         <div className="flex flex-col p-6">
                             <h2 className="text-muted-foreground mb-2 text-sm">Status</h2>
                             <Link
-                                href="https://status.volt.cloud"
+                                href="https://status.voltcloud.ai"
                                 className="hover:decoration-primary font-medium hover:underline">
-                                status.volt.cloud
+                                status.voltcloud.ai
                             </Link>
                         </div>
                         <div className="flex flex-col p-6">

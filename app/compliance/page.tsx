@@ -61,7 +61,7 @@ export default function CompliancePage() {
                                 <CardHeader>
                                     <pillar.icon
                                         aria-hidden
-                                        className="text-foreground size-6"
+                                        className="text-primary size-6"
                                     />
                                     <CardTitle className="mt-2 text-xl">{pillar.title}</CardTitle>
                                     <CardDescription>{pillar.description}</CardDescription>

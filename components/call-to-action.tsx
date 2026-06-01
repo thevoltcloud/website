@@ -22,7 +22,7 @@ export default function CallToAction() {
                                 <Link href="/contact">Request access</Link>
                             </Button>
                             <Button asChild variant="outline">
-                                <Link href="https://docs.volt.cloud">Read the docs</Link>
+                                <Link href="https://docs.voltcloud.ai">Read the docs</Link>
                             </Button>
                         </div>
                     </div>

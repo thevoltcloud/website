@@ -6,18 +6,22 @@ import { CardTitle, CardDescription } from '@/components/ui/card'
 import { useState } from 'react'
 import NumberFlow from '@number-flow/react'
 
-export default function Pricing() {
-    const [billingPeriod, setBillingPeriod] = useState<'monthly' | 'annually'>('annually')
+type Term = 'onDemand' | 'reserved'
 
+export default function Pricing() {
+    const [term, setTerm] = useState<Term>('reserved')
+
+    // Reserved = best 36-month rate (60% off on-demand — the locked reserved discount).
+    // Spark is per-token (no term pricing); it stays flat and the subtext explains why.
     const prices = {
-        forge: {
-            monthly: 2.36,
-            annually: 2.36,
-        },
-        vault: {
-            monthly: 85000,
-            annually: 85000,
-        },
+        forge: { onDemand: 5.9, reserved: 2.36 },
+        vault: { onDemand: 212500, reserved: 85000 },
+    }
+
+    const note = {
+        spark: term === 'reserved' ? 'Standard rate · committed volume' : 'Standard rate · pay-as-you-go',
+        forge: term === 'reserved' ? 'NVIDIA B200 · 36-mo reserved' : 'NVIDIA B200 · on-demand',
+        vault: term === 'reserved' ? '8-GPU B200 rack · 36-mo' : '8-GPU B200 rack · monthly',
     }
 
     return (
@@ -29,27 +33,27 @@ export default function Pricing() {
 
                     <div className="my-12">
                         <div
-                            data-period={billingPeriod}
-                            className="bg-foreground/5 *:text-foreground/75 relative mx-auto grid w-fit grid-cols-2 rounded-full p-1 *:block *:h-8 *:w-24 *:rounded-full *:text-sm *:hover:opacity-75">
+                            data-term={term}
+                            className="bg-foreground/5 *:text-foreground/75 relative mx-auto grid w-fit grid-cols-2 rounded-full p-1 *:block *:h-8 *:w-28 *:rounded-full *:text-sm *:hover:opacity-75">
                             <div
                                 aria-hidden
-                                className="bg-card in-data-[period=monthly]:translate-x-0 ring-foreground/5 pointer-events-none absolute inset-1 w-1/2 translate-x-full rounded-full border border-transparent shadow ring-1 transition-transform duration-500 ease-in-out"
+                                className="bg-card in-data-[term=onDemand]:translate-x-0 ring-foreground/5 pointer-events-none absolute inset-1 w-1/2 translate-x-full rounded-full border border-transparent shadow ring-1 transition-transform duration-500 ease-in-out"
                             />
                             <button
-                                onClick={() => setBillingPeriod('monthly')}
-                                {...(billingPeriod === 'monthly' && { 'data-active': true })}
+                                onClick={() => setTerm('onDemand')}
+                                {...(term === 'onDemand' && { 'data-active': true })}
                                 className="data-active:text-foreground data-active:font-medium relative">
                                 On-demand
                             </button>
                             <button
-                                onClick={() => setBillingPeriod('annually')}
-                                {...(billingPeriod === 'annually' && { 'data-active': true })}
+                                onClick={() => setTerm('reserved')}
+                                {...(term === 'reserved' && { 'data-active': true })}
                                 className="data-active:text-foreground data-active:font-medium relative">
                                 Reserved
                             </button>
                         </div>
                         <div className="mt-3 text-center text-xs">
-                            <span className="text-primary font-medium">Save up to 60%</span> On 36-month Reserved
+                            <span className="text-primary font-medium">Save up to 60%</span> on 36-month reserved capacity
                         </div>
                     </div>
                 </div>
@@ -69,13 +73,13 @@ export default function Pricing() {
                                         suffix="/M"
                                         className="text-3xl font-semibold"
                                     />
-                                    <div className="text-muted-foreground text-sm">Per million tokens</div>
+                                    <div className="text-muted-foreground text-sm">{note.spark}</div>
                                 </div>
                                 <Button
                                     asChild
                                     variant="outline"
                                     className="w-full">
-                                    <Link href="/contact">Get Started</Link>
+                                    <Link href="/contact">Get started</Link>
                                 </Button>
 
                                 <ul
@@ -86,7 +90,7 @@ export default function Pricing() {
                                             key={index}
                                             className="flex items-center gap-2">
                                             <Check
-                                                className="text-muted-foreground size-3"
+                                                className="text-primary size-3"
                                                 strokeWidth={3.5}
                                             />
                                             {item}
@@ -102,28 +106,28 @@ export default function Pricing() {
 
                                 <div>
                                     <NumberFlow
-                                        value={prices.forge[billingPeriod]}
+                                        value={prices.forge[term]}
                                         format={{ style: 'currency', currency: 'USD', minimumFractionDigits: 2 }}
                                         suffix="/GPU/hr"
                                         className="text-3xl font-semibold"
                                     />
-                                    <div className="text-muted-foreground text-sm">NVIDIA B200, 36-mo reserved</div>
+                                    <div className="text-muted-foreground text-sm">{note.forge}</div>
                                 </div>
                                 <Button
                                     asChild
                                     className="w-full">
-                                    <Link href="/contact">Get Started</Link>
+                                    <Link href="/contact">Get started</Link>
                                 </Button>
 
                                 <ul
                                     role="list"
                                     className="space-y-3 text-sm">
-                                    {['Everything in Spark plus:', 'NVIDIA B200 + L40S capacity', 'Scoped kubeconfig into a dedicated namespace', 'Reserved: 45% off at 12-mo, 60% off at 36-mo', '31% below CoreWeave list', 'Zero egress, in-metro serving', '99.9% uptime SLA (Tier III)'].map((item, index) => (
+                                    {['Everything in Spark plus:', 'NVIDIA B200 + L40S capacity', 'Scoped kubeconfig into a dedicated namespace', 'Reserved: 45% off at 12-mo, 60% off at 36-mo', '31% below CoreWeave list', '99.9% uptime SLA (Tier III)'].map((item, index) => (
                                         <li
                                             key={index}
                                             className="group flex items-center gap-2 first:font-medium">
                                             <Check
-                                                className="text-muted-foreground size-3 group-first:hidden"
+                                                className="text-primary size-3 group-first:hidden"
                                                 strokeWidth={3.5}
                                             />
                                             {item}
@@ -139,28 +143,29 @@ export default function Pricing() {
 
                                 <div>
                                     <NumberFlow
-                                        value={prices.vault[billingPeriod]}
+                                        value={prices.vault[term]}
                                         format={{ style: 'currency', currency: 'USD', maximumFractionDigits: 0 }}
+                                        suffix="/mo"
                                         className="text-3xl font-semibold"
                                     />
-                                    <div className="text-muted-foreground text-sm">Per month, 8-GPU B200 rack</div>
+                                    <div className="text-muted-foreground text-sm">{note.vault}</div>
                                 </div>
                                 <Button
                                     asChild
                                     variant="outline"
                                     className="w-full">
-                                    <Link href="/contact">Get Started</Link>
+                                    <Link href="/contact">Get started</Link>
                                 </Button>
 
                                 <ul
                                     role="list"
                                     className="space-y-3 text-sm">
-                                    {['Everything in Forge plus:', 'Single-tenant bare-metal racks', 'Measured-boot attestation per node', 'SPIFFE federation into your trust domain', 'Sovereign by default', 'Zero ingress, zero egress, zero inter-pod transfer', '8-GPU B200 rack, 36-mo'].map((item, index) => (
+                                    {['Everything in Forge plus:', 'Single-tenant bare-metal racks', 'Measured-boot attestation per node', 'SPIFFE federation into your trust domain', 'Zero ingress, egress, and inter-pod transfer', '8-GPU B200 rack, 36-mo'].map((item, index) => (
                                         <li
                                             key={index}
                                             className="group flex items-center gap-2 first:font-medium">
                                             <Check
-                                                className="text-muted-foreground size-3 group-first:hidden"
+                                                className="text-primary size-3 group-first:hidden"
                                                 strokeWidth={3.5}
                                             />
                                             {item}

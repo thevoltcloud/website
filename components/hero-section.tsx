@@ -31,7 +31,7 @@ export default function HeroSection() {
                                         asChild
                                         variant="outline"
                                         className="pl-3.5">
-                                        <Link href="https://docs.volt.cloud">
+                                        <Link href="https://docs.voltcloud.ai">
                                             <Play className="fill-foreground !size-3" />
                                             <span className="text-nowrap">Read the docs</span>
                                         </Link>

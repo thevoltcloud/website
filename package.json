@@ -2,7 +2,7 @@
   "name": "@thevoltcloud/website",
   "version": "0.1.0",
   "private": true,
-  "description": "Source for volt.cloud — the Volt marketing site.",
+  "description": "Source for voltcloud.ai — the Volt marketing site.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
