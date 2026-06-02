@@ -4,6 +4,7 @@ import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { InvestorLogout } from '@/components/investor-logout'
 import { getInvestorJson } from '@/lib/investor-blob'
+import { SKUS } from '@/lib/site'
 import { FileText, FileSpreadsheet, Presentation, FileBox, ArrowRight, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -21,8 +22,8 @@ export const runtime = 'nodejs'
 // (public) repo source. Read server-side at runtime; fall back if unavailable.
 type Metric = { value: string; label: string; sub: string }
 type Financial = { metric: string; y: string[] }
-type Round = { round: string; year: string; raise: string; post: string; use: string }
-type Ask = { raise: string; seriesA: string; seriesAWindow: string; structure?: string }
+type Round = { round: string; year: string; raise: string; post: string; dilution?: string; use: string }
+type Ask = { raise: string; seriesA: string; seriesAWindow: string; structure?: string; runway?: string }
 type InvestorData = { ask: Ask; metrics: Metric[]; financials: Financial[]; rounds: Round[] }
 
 function loadData(): Promise<InvestorData | null> {
@@ -66,8 +67,8 @@ export default async function InvestorRoomPage() {
                         The Sovereign Inference Cloud
                     </h1>
                     <p className="text-muted-foreground mt-5 text-balance text-lg">
-                        Run 70B models in your customer&apos;s metro, at Bedrock prices, without their data leaving
-                        the city.
+                        Frontier 70B open models in your customer&apos;s metro, at Bedrock prices, with zero egress
+                        and cryptographic attestation.
                         {data && (
                             <>
                                 {' '}
@@ -78,10 +79,39 @@ export default async function InvestorRoomPage() {
                             </>
                         )}
                     </p>
+                    <p className="text-muted-foreground mt-4 text-balance">
+                        Why now: inference is roughly 55% of cloud-AI spend and a ~$117B market in 2026, while
+                        sovereignty rules — the EU AI Act and FedRAMP — are forcing that compute to stay in-region.
+                        Volt is built for exactly that boundary.
+                    </p>
                     {data?.ask.structure && (
                         <p className="text-muted-foreground/80 mt-4 text-sm">{data.ask.structure}</p>
                     )}
+                    {data?.ask.runway && (
+                        <p className="text-muted-foreground/80 mt-3 text-sm">{data.ask.runway}</p>
+                    )}
                 </div>
+
+                {/* What we sell */}
+                <section className="mt-16">
+                    <h2 className="text-2xl font-semibold">What we sell</h2>
+                    <p className="text-muted-foreground mt-2 text-sm">
+                        Three products on one CNCF-native, multi-vendor stack — from token to bare metal, sovereign
+                        on every tier.
+                    </p>
+                    <div className="mt-6 grid gap-4 md:grid-cols-3">
+                        {SKUS.map((sku) => (
+                            <Card key={sku.slug} className="p-6">
+                                <h3 className="font-semibold">{sku.name}</h3>
+                                <p className="text-muted-foreground mt-1 text-sm">{sku.summary}</p>
+                                <div className="mt-4">
+                                    <span className="text-primary text-2xl font-semibold">{sku.headlinePrice}</span>
+                                </div>
+                                <p className="text-muted-foreground mt-1 text-xs">{sku.priceNote}</p>
+                            </Card>
+                        ))}
+                    </div>
+                </section>
 
                 {!data && (
                     <Card className="mt-10 p-6">
@@ -161,7 +191,10 @@ export default async function InvestorRoomPage() {
                                         </div>
                                         <div className="mt-3 flex items-baseline gap-2">
                                             <span className="text-primary text-2xl font-semibold">{r.raise}</span>
-                                            <span className="text-muted-foreground text-sm">raise · {r.post} post-money</span>
+                                            <span className="text-muted-foreground text-sm">
+                                                raise · {r.post} post-money
+                                                {r.dilution ? ` · ${r.dilution} dilution` : ''}
+                                            </span>
                                         </div>
                                         <p className="text-muted-foreground mt-3 text-sm">{r.use}</p>
                                     </Card>
