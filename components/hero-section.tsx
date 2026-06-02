@@ -120,15 +120,6 @@ export default function HeroSection() {
                                 </div>
                             </div>
                         </div>
-
-                        <div className="mx-auto mt-8 max-w-5xl px-6 text-center">
-                            <p className="text-muted-foreground text-sm">Built on a multi-vendor, CNCF-native stack</p>
-                            <div className="text-muted-foreground/80 mx-auto mt-6 flex w-full max-w-2xl flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm font-medium">
-                                {['NVIDIA', 'AMD', 'Intel', 'CNCF', 'Kubernetes', 'vLLM', 'Cilium'].map((name) => (
-                                    <span key={name}>{name}</span>
-                                ))}
-                            </div>
-                        </div>
                     </div>
                 </section>
             </div>
