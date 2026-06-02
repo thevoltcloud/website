@@ -48,7 +48,7 @@ const faqItems = [
             {
                 id: 'item-1',
                 question: 'What is the SLA?',
-                answer: 'Volt runs a 99.9% uptime SLA on Tier III infrastructure. Service credits apply at the 99.0% and 98.0% breach thresholds. Live status is published at voltcloud.ai/status.',
+                answer: 'Volt runs a 99.9% uptime SLA on Tier III infrastructure. Service credits apply at the 99.0% and 98.0% breach thresholds. Live status is published on our status page.',
             },
         ],
     },

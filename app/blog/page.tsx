@@ -8,6 +8,18 @@ export const metadata: Metadata = {
 
 const POSTS = [
   {
+    slug: "in-metro-economics",
+    title: "How in-metro inference beats Bedrock on price",
+    date: "2026-06-02",
+    excerpt: "Lower prices and zero egress aren't a promo. They fall out of the pod economics — reserved GPUs, open weights, and no data-transfer tax.",
+  },
+  {
+    slug: "open-weights",
+    title: "Why we bet on open weights",
+    date: "2026-06-02",
+    excerpt: "Sovereignty and open weights are the same bet: you can only prove where a model ran if you control the weights and the metal.",
+  },
+  {
     slug: "sovereign-inference",
     title: "Why sovereign inference is an architecture problem, not a policy one",
     date: "2026-06-01",

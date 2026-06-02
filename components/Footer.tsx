@@ -160,7 +160,7 @@ export default function FooterSection() {
                             <span className="duration-1500 absolute inset-0 block size-full animate-pulse rounded-full bg-emerald-100"></span>
                             <span className="relative m-auto block size-1 rounded-full bg-emerald-500"></span>
                         </div>
-                        <span className="text-sm">All Systems Normal</span>
+                        <span className="text-sm">All systems operational</span>
                     </Link>
                 </div>
             </div>

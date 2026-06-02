@@ -1,6 +1,10 @@
 import type { Metadata } from 'next'
 import { Card } from '@/components/ui/card'
 import { Zap, Cpu, Lock, Server, BookOpen, Globe, CheckCircle2 } from 'lucide-react'
+import { SITE } from '@/lib/site'
+
+const docsHost = new URL(SITE.docsUrl).host
+const siteHost = new URL(SITE.url).host
 
 export const metadata: Metadata = {
     title: 'Status',
@@ -29,8 +33,8 @@ const components: { name: string; description: string; icon: typeof Zap; status:
     { name: 'Volt Forge — GPU provisioning', description: 'Dedicated GPU leases', icon: Cpu, status: 'operational' },
     { name: 'Volt Vault — Bare-metal', description: 'Single-tenant racks', icon: Lock, status: 'operational' },
     { name: 'Control plane & Console', description: 'Tenant management and scheduling', icon: Server, status: 'operational' },
-    { name: 'Documentation', description: 'docs.voltcloud.ai', icon: BookOpen, status: 'operational' },
-    { name: 'Website & API gateway', description: 'voltcloud.ai and edge', icon: Globe, status: 'operational' },
+    { name: 'Documentation', description: docsHost, icon: BookOpen, status: 'operational' },
+    { name: 'Website & API gateway', description: `${siteHost} and edge`, icon: Globe, status: 'operational' },
 ]
 
 const incidents: { date: string; title: string; detail: string }[] = []
@@ -125,8 +129,8 @@ export default function StatusPage() {
                 {/* Footer note */}
                 <p className="text-muted-foreground mt-10 text-center text-xs">
                     Subscribe to product and status updates in the footer below, or reach us at{' '}
-                    <a href="mailto:hello@voltcloud.ai" className="text-primary hover:underline">
-                        hello@voltcloud.ai
+                    <a href={`mailto:${SITE.contactEmail}`} className="text-primary hover:underline">
+                        {SITE.contactEmail}
                     </a>
                     .
                 </p>

@@ -1,5 +1,4 @@
 import HeroSection from "@/components/hero-section";
-import LogoCloud from "@/components/logo-cloud";
 import BentoOne from "@/components/bento-1";
 import StatsSection from "@/components/stats-4";
 import IntegrationsSection from "@/components/integrations-1";
@@ -13,7 +12,6 @@ export default function Home() {
   return (
     <>
       <HeroSection />
-      <LogoCloud />
       <BentoOne />
       <StatsSection />
       <IntegrationsSection />

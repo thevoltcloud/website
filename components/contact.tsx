@@ -4,8 +4,8 @@ import { SITE } from '@/lib/site'
 import { LeadForm } from '@/components/lead-form'
 
 const channels = [
-    { label: 'General', value: 'hello@voltcloud.ai', href: 'mailto:hello@voltcloud.ai' },
-    { label: 'Security', value: 'security@voltcloud.ai', href: 'mailto:security@voltcloud.ai' },
+    { label: 'General', value: SITE.contactEmail, href: `mailto:${SITE.contactEmail}` },
+    { label: 'Security', value: SITE.securityEmail, href: `mailto:${SITE.securityEmail}` },
     { label: 'Docs', value: 'Read the docs', href: SITE.docsUrl },
     { label: 'Status', value: 'View status page', href: SITE.statusUrl },
     { label: 'GitHub', value: '@thevoltcloud', href: 'https://github.com/thevoltcloud' },

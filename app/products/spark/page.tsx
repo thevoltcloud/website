@@ -32,7 +32,7 @@ const features = [
 const codeSample = `from openai import OpenAI
 
 client = OpenAI(
-    base_url="https://api.voltcloud.ai/v1",
+    base_url="${SITE.apiUrl}/v1",
     api_key="volt-...",
 )
 

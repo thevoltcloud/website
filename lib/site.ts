@@ -12,11 +12,19 @@ const DOCS_URL = process.env.NEXT_PUBLIC_DOCS_URL ?? "https://docs.voltcloud.ai"
 // consistent). Override with NEXT_PUBLIC_STATUS_URL to point at a dedicated
 // status subdomain later.
 const STATUS_URL = process.env.NEXT_PUBLIC_STATUS_URL ?? `${SITE_URL}/status`;
+// Inference API endpoint shown in code samples. Defaults to the interim
+// cuemby.cloud host until voltcloud.ai is purchased; override with
+// NEXT_PUBLIC_API_URL (e.g. https://api.voltcloud.ai) once it's live.
+const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "https://api.cuemby.cloud";
+// Contact addresses. Interim volt@cuemby.cloud (deliverable today) until the
+// brand inboxes on voltcloud.ai exist; override via env then.
+const CONTACT_EMAIL = process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "volt@cuemby.cloud";
+const SECURITY_EMAIL = process.env.NEXT_PUBLIC_SECURITY_EMAIL ?? "volt@cuemby.cloud";
 
 export const SITE = {
   name: "Volt",
   category: "The Sovereign Inference Cloud",
-  tagline: "Sovereign inference, at Bedrock prices.",
+  tagline: "Sovereign AI infrastructure for the regulated world.",
   // Longer, keyword-rich line for SEO/social metadata (tagline is too sparse to
   // index well on its own). Kept distinct from the hero tagline on purpose.
   description:
@@ -26,9 +34,10 @@ export const SITE = {
   url: SITE_URL,
   docsUrl: DOCS_URL,
   statusUrl: STATUS_URL,
+  apiUrl: API_URL,
   githubUrl: "https://github.com/thevoltcloud",
-  contactEmail: "hello@voltcloud.ai",
-  securityEmail: "security@voltcloud.ai",
+  contactEmail: CONTACT_EMAIL,
+  securityEmail: SECURITY_EMAIL,
 } as const;
 
 export interface Sku {

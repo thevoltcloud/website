@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { CheckCircle2 } from 'lucide-react'
+import { SITE } from '@/lib/site'
 
 const fieldClass =
     'bg-card ring-foreground/10 placeholder:text-muted-foreground/75 flex w-full min-w-0 rounded-md border border-transparent px-3 py-2 text-base shadow-sm outline-none ring-1 transition-[color,box-shadow] focus-visible:border-foreground/35 focus-visible:ring-ring/25 focus-visible:ring-[3px] md:text-sm'
@@ -45,7 +46,7 @@ export function LeadForm() {
                 setStatus('error')
             }
         } catch {
-            setError('Network error. Please try again or email hello@voltcloud.ai.')
+            setError(`Network error. Please try again or email ${SITE.contactEmail}.`)
             setStatus('error')
         }
     }
@@ -59,8 +60,8 @@ export function LeadForm() {
                 <h3 className="text-lg font-semibold">Thanks — we&apos;ve got it.</h3>
                 <p className="text-muted-foreground text-sm">
                     We&apos;ll route you to the right pod and follow up shortly. For anything urgent, email{' '}
-                    <a href="mailto:hello@voltcloud.ai" className="text-primary hover:underline">
-                        hello@voltcloud.ai
+                    <a href={`mailto:${SITE.contactEmail}`} className="text-primary hover:underline">
+                        {SITE.contactEmail}
                     </a>
                     .
                 </p>
