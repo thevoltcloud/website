@@ -1,13 +1,16 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
+import { cookies, headers } from 'next/headers'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { InvestorLogout } from '@/components/investor-logout'
 import { getInvestorJson } from '@/lib/investor-blob'
 import { SKUS } from '@/lib/site'
 import { LinkedInIcon } from '@/components/linkedin-icon'
-import { FileText, FileSpreadsheet, Presentation, FileBox, ArrowRight, ShieldCheck } from 'lucide-react'
+import { COOKIE_NAME, sha256hex, isAdminEmail } from '@/lib/investor-auth'
+import { resolveSession, getInvestor, logEvent, contextFromHeaders } from '@/lib/investor-store'
+import { FileText, FileSpreadsheet, Presentation, FileBox, ArrowRight, ShieldCheck, Gauge } from 'lucide-react'
 
 export const metadata: Metadata = {
     title: 'Investor Room',
@@ -51,6 +54,16 @@ const years = ['Y1', 'Y2', 'Y3', 'Y4', 'Y5']
 export default async function InvestorRoomPage() {
     const data = await loadData()
 
+    // Attribute this view to the signed-in investor and log it. Middleware has
+    // already guaranteed a live session, so resolve is just for identity here.
+    const raw = (await cookies()).get(COOKIE_NAME)?.value
+    const email = raw ? await resolveSession(await sha256hex(raw)) : null
+    let isAdmin = false
+    if (email) {
+        await logEvent('page_view', contextFromHeaders(await headers()), { email, docKey: '/investors' })
+        isAdmin = isAdminEmail(email) || Boolean((await getInvestor(email))?.is_admin)
+    }
+
     return (
         <div className="bg-background">
             <div className="mx-auto max-w-5xl px-6 py-16 md:py-24">
@@ -60,7 +73,17 @@ export default async function InvestorRoomPage() {
                         <ShieldCheck className="text-primary size-3.5" />
                         Confidential · Investor Room
                     </span>
-                    <InvestorLogout />
+                    <div className="flex items-center gap-4">
+                        {isAdmin && (
+                            <Link
+                                href="/investors/admin"
+                                className="text-muted-foreground hover:text-primary inline-flex items-center gap-1.5 text-sm transition-colors">
+                                <Gauge className="size-3.5" />
+                                Admin
+                            </Link>
+                        )}
+                        <InvestorLogout />
+                    </div>
                 </div>
 
                 {/* The ask */}

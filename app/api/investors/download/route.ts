@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server'
-import { COOKIE_NAME, isAuthorized } from '@/lib/investor-auth'
+import { readSessionCookie, sha256hex } from '@/lib/investor-auth'
+import { resolveSession, logEvent, requestContext } from '@/lib/investor-store'
 import { getInvestorBlob } from '@/lib/investor-blob'
 
 export const runtime = 'nodejs'
@@ -32,15 +33,11 @@ const FILES: Record<string, { name: string; type: string }> = {
 
 export async function GET(request: Request) {
   // Defense in depth: middleware already gates this path, but re-check here so
-  // the route is safe even if the matcher ever changes.
-  const token = request.headers
-    .get('cookie')
-    ?.split(';')
-    .map((c) => c.trim())
-    .find((c) => c.startsWith(`${COOKIE_NAME}=`))
-    ?.slice(COOKIE_NAME.length + 1)
-
-  if (!(await isAuthorized(token))) {
+  // the route is safe even if the matcher ever changes — and so we can attribute
+  // the download to a specific investor in the audit log.
+  const raw = readSessionCookie(request.headers.get('cookie'))
+  const email = raw ? await resolveSession(await sha256hex(raw)) : null
+  if (!email) {
     return NextResponse.json({ error: 'unauthorized' }, { status: 401 })
   }
 
@@ -54,6 +51,8 @@ export async function GET(request: Request) {
   if (!blob || blob.statusCode !== 200) {
     return NextResponse.json({ error: 'file unavailable' }, { status: 404 })
   }
+
+  await logEvent('download', requestContext(request), { email, docKey: key })
 
   return new NextResponse(blob.stream, {
     headers: {

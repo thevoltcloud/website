@@ -7,7 +7,7 @@ export function InvestorLogout() {
     const router = useRouter()
 
     async function logout() {
-        await fetch('/api/investors/auth', { method: 'DELETE' })
+        await fetch('/api/investors/logout', { method: 'POST' })
         router.replace('/investors/login')
         router.refresh()
     }

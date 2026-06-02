@@ -1,42 +1,67 @@
-// Shared investor-room auth. Works in both the edge runtime (middleware) and the
-// node runtime (API routes) — uses Web Crypto, which is global in both.
+// Investor data-room auth primitives. No shared password anymore — access is
+// per-email via single-use magic links that mint an opaque session token.
 //
-// Model: a single shared passphrase (INVESTOR_PASSWORD) gates the room. On a
-// correct password the auth route sets an httpOnly cookie whose value is a hash
-// of a server secret (INVESTOR_AUTH_SECRET). Middleware recomputes that hash and
-// compares — the cookie proves "authenticated" without ever storing the
-// passphrase, and can't be forged without the secret.
-//
-// Set both as (non-public) env vars on the deployment. The dev fallbacks below
-// only apply when the vars are missing, so local builds work.
+// Works in both the edge runtime (middleware) and node runtime (route handlers):
+// uses Web Crypto (global in both) for hashing and randomness.
 
 export const COOKIE_NAME = 'volt_ir'
-export const COOKIE_MAX_AGE = 60 * 60 * 24 * 30 // 30 days
+export const SESSION_TTL_DAYS = 30
+export const TOKEN_TTL_MINUTES = 15
 
-function getSecret(): string {
-  return process.env.INVESTOR_AUTH_SECRET ?? 'volt-dev-secret-change-me'
+// 32 random bytes, hex — used as the raw magic-link token and the raw session
+// token. Only the hash is ever stored; the raw value lives in the URL / cookie.
+export function randomToken(): string {
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
 }
 
-export function getPassword(): string {
-  return process.env.INVESTOR_PASSWORD ?? 'volt-demo'
-}
-
-export async function expectedToken(): Promise<string> {
-  const data = new TextEncoder().encode(`volt-investor:${getSecret()}`)
-  const digest = await crypto.subtle.digest('SHA-256', data)
+export async function sha256hex(input: string): Promise<string> {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input))
   return Array.from(new Uint8Array(digest))
     .map((b) => b.toString(16).padStart(2, '0'))
     .join('')
 }
 
-export async function isAuthorized(token: string | undefined): Promise<boolean> {
-  if (!token) return false
-  const expected = await expectedToken()
-  // length check first; constant-ish comparison
-  if (token.length !== expected.length) return false
-  let mismatch = 0
-  for (let i = 0; i < expected.length; i++) {
-    mismatch |= token.charCodeAt(i) ^ expected.charCodeAt(i)
-  }
-  return mismatch === 0
+export function normalizeEmail(email: string): string {
+  return email.trim().toLowerCase()
+}
+
+export function isValidEmail(email: string): boolean {
+  return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)
+}
+
+// Bootstrap admins via env (comma-separated). These emails can always reach the
+// admin console; additional admins can be flagged in the DB (investors.is_admin).
+export function adminEmails(): string[] {
+  return (process.env.INVESTOR_ADMIN_EMAILS ?? 'angel@cuemby.com')
+    .split(',')
+    .map((e) => e.trim().toLowerCase())
+    .filter(Boolean)
+}
+
+export function isAdminEmail(email: string | null | undefined): boolean {
+  if (!email) return false
+  return adminEmails().includes(email.toLowerCase())
+}
+
+// Public origin of an incoming request (honors Vercel's proxy headers), used to
+// build absolute magic-link / redirect URLs that match the host the user is on.
+export function requestOrigin(req: Request): string {
+  const host = req.headers.get('x-forwarded-host') ?? req.headers.get('host')
+  const proto = req.headers.get('x-forwarded-proto') ?? 'https'
+  if (host) return `${proto}://${host}`
+  return process.env.NEXT_PUBLIC_SITE_URL ?? 'https://voltcloud.ai'
+}
+
+// Read the raw session token from a Cookie header value (edge-safe, no next/headers).
+export function readSessionCookie(cookieHeader: string | null): string | undefined {
+  if (!cookieHeader) return undefined
+  return cookieHeader
+    .split(';')
+    .map((c) => c.trim())
+    .find((c) => c.startsWith(`${COOKIE_NAME}=`))
+    ?.slice(COOKIE_NAME.length + 1)
 }

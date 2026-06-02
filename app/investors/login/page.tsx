@@ -1,20 +1,22 @@
 'use client'
 
 import { useState, Suspense } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSearchParams } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Card } from '@/components/ui/card'
 import { LogoIcon } from '@/components/logo'
-import { Lock } from 'lucide-react'
+import { Lock, MailCheck } from 'lucide-react'
 
 function LoginForm() {
-    const router = useRouter()
     const params = useSearchParams()
-    const from = params.get('from') || '/investors'
+    const linkError = params.get('error')
 
-    const [password, setPassword] = useState('')
+    const [email, setEmail] = useState('')
+    const [name, setName] = useState('')
+    const [firm, setFirm] = useState('')
+    const [sent, setSent] = useState(false)
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
@@ -23,23 +25,40 @@ function LoginForm() {
         setLoading(true)
         setError('')
         try {
-            const res = await fetch('/api/investors/auth', {
+            const res = await fetch('/api/investors/request', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ password }),
+                body: JSON.stringify({ email, name, firm }),
             })
             if (res.ok) {
-                router.replace(from)
-                router.refresh()
+                setSent(true)
             } else {
                 const data = await res.json().catch(() => ({}))
-                setError(data.error || 'Incorrect access code.')
+                setError(data.error || 'Something went wrong.')
                 setLoading(false)
             }
         } catch {
             setError('Something went wrong. Try again.')
             setLoading(false)
         }
+    }
+
+    if (sent) {
+        return (
+            <Card className="w-full max-w-sm p-8 text-center">
+                <span className="bg-primary/10 mx-auto flex size-12 items-center justify-center rounded-full">
+                    <MailCheck className="text-primary size-6" />
+                </span>
+                <h1 className="mt-4 text-xl font-semibold">Check your email</h1>
+                <p className="text-muted-foreground mt-2 text-balance text-sm">
+                    If <span className="text-foreground font-medium">{email}</span> is on our approved list, a secure
+                    link is on its way. It&apos;s single-use and expires in 15 minutes.
+                </p>
+                <p className="text-muted-foreground mt-4 text-xs">
+                    Not approved yet? We&apos;ve logged your request and will be in touch.
+                </p>
+            </Card>
+        )
     }
 
     return (
@@ -50,36 +69,49 @@ function LoginForm() {
                 </span>
                 <h1 className="mt-4 text-xl font-semibold">Volt Investor Room</h1>
                 <p className="text-muted-foreground mt-2 text-balance text-sm">
-                    Confidential. Enter the access code from your invitation to continue.
+                    Confidential. Enter your email and we&apos;ll send a secure access link.
                 </p>
             </div>
 
+            {linkError && (
+                <p className="bg-destructive/10 text-destructive mt-6 rounded-lg p-3 text-center text-xs">
+                    That link was invalid or has expired. Enter your email to get a new one.
+                </p>
+            )}
+
             <form onSubmit={onSubmit} className="mt-6 space-y-4">
                 <div className="space-y-2">
-                    <Label htmlFor="password">Access code</Label>
+                    <Label htmlFor="email">Work email</Label>
                     <Input
-                        id="password"
-                        type="password"
-                        autoComplete="current-password"
+                        id="email"
+                        type="email"
+                        autoComplete="email"
                         autoFocus
-                        value={password}
-                        onChange={(e) => setPassword(e.target.value)}
-                        placeholder="••••••••••"
                         required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="you@firm.com"
                     />
                 </div>
+                <div className="grid grid-cols-2 gap-3">
+                    <div className="space-y-2">
+                        <Label htmlFor="name">Name</Label>
+                        <Input id="name" value={name} onChange={(e) => setName(e.target.value)} placeholder="Optional" />
+                    </div>
+                    <div className="space-y-2">
+                        <Label htmlFor="firm">Firm</Label>
+                        <Input id="firm" value={firm} onChange={(e) => setFirm(e.target.value)} placeholder="Optional" />
+                    </div>
+                </div>
                 {error && <p className="text-destructive text-sm">{error}</p>}
-                <Button type="submit" className="w-full" disabled={loading || !password}>
-                    {loading ? 'Verifying…' : 'Enter'}
+                <Button type="submit" className="w-full" disabled={loading || !email}>
+                    {loading ? 'Sending…' : 'Send me a link'}
                 </Button>
             </form>
 
             <p className="text-muted-foreground mt-6 flex items-center justify-center gap-1.5 text-xs">
                 <Lock className="size-3" />
-                Need access? Email{' '}
-                <a href="mailto:angel@cuemby.com" className="text-primary hover:underline">
-                    angel@cuemby.com
-                </a>
+                Access is by approval. Questions? angel@cuemby.com
             </p>
         </Card>
     )
