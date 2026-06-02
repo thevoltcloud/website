@@ -8,6 +8,7 @@ import { useScroll, useMotionValueEvent } from 'motion/react'
 import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu'
 import { Menu, X, Cpu, Zap, Lock, ShieldCheck, BadgeCheck, Building2, BookOpen, Notebook } from 'lucide-react'
 import { useMedia } from '@/hooks/use-media'
+import { usePathname } from 'next/navigation'
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion'
 import { cn } from '@/lib/utils'
 import { SITE } from '@/lib/site'
@@ -87,6 +88,8 @@ const mobileLinks: MobileLink[] = [
 ]
 
 export default function HeaderOne() {
+    // The investor room has its own focused chrome — hide the marketing header there.
+    const pathname = usePathname()
     const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false)
     const [isScrolled, setIsScrolled] = React.useState(false)
     const isLarge = useMedia('(min-width: 64rem)')
@@ -96,6 +99,8 @@ export default function HeaderOne() {
     useMotionValueEvent(scrollY, 'change', (latest) => {
         setIsScrolled(latest > 50)
     })
+
+    if (pathname?.startsWith('/investors')) return null
 
     return (
         <>

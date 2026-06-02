@@ -42,11 +42,11 @@ const team = [
 ]
 
 const dataRoom = [
-    { key: 'two-pager', title: 'Two-pager', format: 'DOCX', icon: FileText, note: 'The one-glance overview.' },
-    { key: 'investor-deck', title: 'Investor deck', format: 'PPTX', icon: Presentation, note: '15-slide live-meeting deck.' },
-    { key: 'series-a-deck', title: 'Series A deck', format: 'PPTX', icon: Presentation, note: '22-slide Series A narrative.' },
-    { key: 'financial-model', title: 'Financial model', format: 'XLSX', icon: FileSpreadsheet, note: 'Live 5-year, formula-driven.' },
-    { key: 'execution-plan', title: '90-day execution plan', format: 'DOCX', icon: FileBox, note: 'Gantt + risk register.' },
+    { key: 'two-pager', title: 'Two-pager', format: 'DOCX', icon: FileText, note: 'The one-glance overview.', updated: 'Jun 2026' },
+    { key: 'investor-deck', title: 'Investor deck', format: 'PPTX', icon: Presentation, note: '15-slide live-meeting deck.', updated: 'Jun 2026' },
+    { key: 'series-a-deck', title: 'Series A deck', format: 'PPTX', icon: Presentation, note: '22-slide Series A narrative.', updated: 'Jun 2026' },
+    { key: 'financial-model', title: 'Financial model', format: 'XLSX', icon: FileSpreadsheet, note: 'Live 5-year, formula-driven.', updated: 'Jun 2026' },
+    { key: 'execution-plan', title: '90-day execution plan', format: 'DOCX', icon: FileBox, note: 'Gantt + risk register.', updated: 'Jun 2026' },
 ]
 
 const years = ['Y1', 'Y2', 'Y3', 'Y4', 'Y5']
@@ -92,8 +92,9 @@ export default async function InvestorRoomPage() {
                         The Sovereign Inference Cloud
                     </h1>
                     <p className="text-muted-foreground mt-5 text-balance text-lg">
-                        Frontier 70B open models in your customer&apos;s metro, at Bedrock prices, with zero egress
-                        and cryptographic attestation.
+                        <span className="text-foreground font-medium">Sovereign AI infrastructure for the regulated world.</span>{' '}
+                        Frontier open-weights inference in your customer&apos;s metro — zero egress, cryptographically
+                        attested, at Bedrock prices.
                         {data && (
                             <>
                                 {' '}
@@ -170,8 +171,26 @@ export default async function InvestorRoomPage() {
                                 Locked model. Utilization 55% → 88%, 400 kW per pod, 12 racks. Full workbook in the
                                 data room.
                             </p>
-                            <div className="mt-6 overflow-x-auto">
-                                <table className="w-full min-w-[640px] border-separate border-spacing-0 text-sm">
+                            {/* Mobile: stacked per metric (no horizontal scroll) */}
+                            <div className="mt-6 space-y-4 sm:hidden">
+                                {data.financials.map((row) => (
+                                    <div key={row.metric} className="border-b pb-3">
+                                        <div className="text-sm font-medium">{row.metric}</div>
+                                        <div className="mt-2 grid grid-cols-5 gap-1 text-center">
+                                            {row.y.map((v, i) => (
+                                                <div key={i}>
+                                                    <div className="text-muted-foreground text-[10px] uppercase tracking-wide">{years[i]}</div>
+                                                    <div className="tabular-nums text-xs">{v}</div>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                ))}
+                            </div>
+
+                            {/* Desktop: table */}
+                            <div className="mt-6 hidden sm:block">
+                                <table className="w-full border-separate border-spacing-0 text-sm">
                                     <thead>
                                         <tr className="text-muted-foreground text-left">
                                             <th className="border-b py-3 pr-4 font-medium">Metric</th>
@@ -289,6 +308,7 @@ export default async function InvestorRoomPage() {
                                         </span>
                                     </span>
                                     <span className="text-muted-foreground block text-sm">{d.note}</span>
+                                    <span className="text-muted-foreground/70 mt-0.5 block text-xs">Updated {d.updated}</span>
                                 </span>
                                 <ArrowRight className="text-muted-foreground size-4 shrink-0 -translate-x-1 opacity-0 transition-all group-hover:translate-x-0 group-hover:opacity-100" />
                             </a>

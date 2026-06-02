@@ -1,6 +1,8 @@
+'use client'
 import { Logo } from '@/components/logo'
 import { NewsletterForm } from '@/components/newsletter-form'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { SITE } from '@/lib/site'
 
 const links = [
@@ -66,6 +68,9 @@ const links = [
 ]
 
 export default function FooterSection() {
+    // The investor room uses its own slim confidential footer.
+    const pathname = usePathname()
+    if (pathname?.startsWith('/investors')) return null
     return (
         <footer
             role="contentinfo"
