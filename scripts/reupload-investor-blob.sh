@@ -18,7 +18,7 @@ cd "$(dirname "$0")/../investor-assets"
 
 FILES=(
   investor-data.json
-  Volt_Two_Pager.pdf
+  Volt_Two_Pager.docx
   Volt_Investor_Deck.pptx
   Volt_Series_A_Deck.pptx
   Volt_Financial_Model.xlsx

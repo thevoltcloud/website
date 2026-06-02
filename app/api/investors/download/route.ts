@@ -9,8 +9,8 @@ export const runtime = 'nodejs'
 // reachable by guessing a URL.
 const FILES: Record<string, { name: string; type: string }> = {
   'two-pager': {
-    name: 'Volt_Two_Pager.pdf',
-    type: 'application/pdf',
+    name: 'Volt_Two_Pager.docx',
+    type: 'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
   },
   'investor-deck': {
     name: 'Volt_Investor_Deck.pptx',

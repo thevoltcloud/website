@@ -37,7 +37,7 @@ const team = [
 ]
 
 const dataRoom = [
-    { key: 'two-pager', title: 'Two-pager', format: 'PDF', icon: FileText, note: 'The one-glance overview.' },
+    { key: 'two-pager', title: 'Two-pager', format: 'DOCX', icon: FileText, note: 'The one-glance overview.' },
     { key: 'investor-deck', title: 'Investor deck', format: 'PPTX', icon: Presentation, note: '15-slide live-meeting deck.' },
     { key: 'series-a-deck', title: 'Series A deck', format: 'PPTX', icon: Presentation, note: '22-slide Series A narrative.' },
     { key: 'financial-model', title: 'Financial model', format: 'XLSX', icon: FileSpreadsheet, note: 'Live 5-year, formula-driven.' },
