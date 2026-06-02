@@ -1,10 +1,12 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
 import { InvestorLogout } from '@/components/investor-logout'
 import { getInvestorJson } from '@/lib/investor-blob'
 import { SKUS } from '@/lib/site'
+import { LinkedInIcon } from '@/components/linkedin-icon'
 import { FileText, FileSpreadsheet, Presentation, FileBox, ArrowRight, ShieldCheck } from 'lucide-react'
 
 export const metadata: Metadata = {
@@ -31,9 +33,9 @@ function loadData(): Promise<InvestorData | null> {
 }
 
 const team = [
-    { name: 'Angel Ramirez', role: 'CEO', note: 'CNCF Ambassador · founder of Cuemby' },
-    { name: 'Cristher Castro', role: 'CCO', note: 'Talent, financial discipline, international ops' },
-    { name: 'Hitomi Mizugaki', role: 'CPO', note: 'Product, agile, investor + customer growth' },
+    { name: 'Angel Ramirez', role: 'CEO', note: 'CNCF Ambassador · founder of Cuemby', img: '/team/angel-ramirez.jpg', linkedin: 'https://www.linkedin.com/in/ar4mirez' },
+    { name: 'Cristher Castro', role: 'CCO', note: 'Talent, financial discipline, international ops', img: '/team/cristher-castro.jpg', linkedin: 'https://www.linkedin.com/in/cristhercastro' },
+    { name: 'Hitomi Mizugaki', role: 'CPO', note: 'Product, agile, investor + customer growth', img: '/team/hitomi-mizugaki.jpg', linkedin: 'https://www.linkedin.com/in/hitomim' },
 ]
 
 const dataRoom = [
@@ -215,9 +217,29 @@ export default async function InvestorRoomPage() {
                     <div className="mt-6 grid gap-4 sm:grid-cols-3">
                         {team.map((t) => (
                             <Card key={t.name} className="p-6">
-                                <h3 className="font-semibold">{t.name}</h3>
-                                <div className="text-primary text-sm font-medium">{t.role}</div>
-                                <p className="text-muted-foreground mt-2 text-sm">{t.note}</p>
+                                <div className="flex items-center gap-3">
+                                    <Image
+                                        src={t.img}
+                                        alt={t.name}
+                                        width={48}
+                                        height={48}
+                                        className="size-12 shrink-0 rounded-full object-cover object-top"
+                                    />
+                                    <div className="min-w-0">
+                                        <h3 className="font-semibold">{t.name}</h3>
+                                        <div className="text-primary text-sm font-medium">{t.role}</div>
+                                    </div>
+                                </div>
+                                <p className="text-muted-foreground mt-3 text-sm">{t.note}</p>
+                                <Link
+                                    href={t.linkedin}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    aria-label={`${t.name} on LinkedIn`}
+                                    className="text-muted-foreground hover:text-primary mt-3 inline-flex items-center gap-1.5 text-sm transition-colors">
+                                    <LinkedInIcon className="size-4" />
+                                    LinkedIn
+                                </Link>
                             </Card>
                         ))}
                     </div>

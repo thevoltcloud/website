@@ -1,10 +1,13 @@
 import { cn } from '@/lib/utils'
 import Image from 'next/image'
+import Link from 'next/link'
+import { LinkedInIcon } from '@/components/linkedin-icon'
 
 type Member = {
     name: string
     position: string
     image: string
+    linkedin: string
     decoratorColors: string
 }
 
@@ -13,18 +16,21 @@ const members: Member[] = [
         name: 'Angel Ramirez',
         position: 'CEO · CNCF Ambassador, founder of Cuemby',
         image: '/team/angel-ramirez.jpg',
+        linkedin: 'https://www.linkedin.com/in/ar4mirez',
         decoratorColors: 'from-purple-400 via-blue-400 to-amber-500',
     },
     {
         name: 'Cristher Castro',
         position: 'CCO · Talent, financial discipline, international ops',
         image: '/team/cristher-castro.jpg',
+        linkedin: 'https://www.linkedin.com/in/cristhercastro',
         decoratorColors: 'from-purple-400 via-sky-400 to-emerald-500',
     },
     {
         name: 'Hitomi Mizugaki',
         position: 'CPO · Product, agile, customer growth',
         image: '/team/hitomi-mizugaki.jpg',
+        linkedin: 'https://www.linkedin.com/in/hitomim',
         decoratorColors: 'from-teal-400 via-cyan-400 to-blue-500',
     },
 ]
@@ -54,9 +60,19 @@ export default function TeamSection() {
                                         className="relative z-10 size-full object-cover object-top"
                                     />
                                 </div>
-                                <div className="space-y-0.5 px-3 pb-2 pt-3">
-                                    <p className="text-foreground font-medium">{member.name}</p>
-                                    <p className="text-muted-foreground text-sm">{member.position}</p>
+                                <div className="flex items-start justify-between gap-2 px-3 pb-2 pt-3">
+                                    <div className="space-y-0.5">
+                                        <p className="text-foreground font-medium">{member.name}</p>
+                                        <p className="text-muted-foreground text-sm">{member.position}</p>
+                                    </div>
+                                    <Link
+                                        href={member.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        aria-label={`${member.name} on LinkedIn`}
+                                        className="text-muted-foreground hover:text-primary mt-0.5 shrink-0 transition-colors">
+                                        <LinkedInIcon className="size-4" />
+                                    </Link>
                                 </div>
                             </div>
                         ))}
