@@ -16,7 +16,11 @@ const STATUS_URL = process.env.NEXT_PUBLIC_STATUS_URL ?? `${SITE_URL}/status`;
 export const SITE = {
   name: "Volt",
   category: "The Sovereign Inference Cloud",
-  tagline: "Run 70B models in your customer's metro. At Bedrock prices. Without your data leaving the city.",
+  tagline: "Sovereign inference, at Bedrock prices.",
+  // Longer, keyword-rich line for SEO/social metadata (tagline is too sparse to
+  // index well on its own). Kept distinct from the hero tagline on purpose.
+  description:
+    "Volt is the Sovereign Inference Cloud — run frontier 70B open models in your customer's metro at Bedrock-beating prices, with zero egress and cryptographic attestation.",
   positioning:
     "For regulated and sovereign-conscious organizations that need frontier open-weights LLMs in production, Volt runs in the customer's metro with zero egress and cryptographic attestation.",
   url: SITE_URL,

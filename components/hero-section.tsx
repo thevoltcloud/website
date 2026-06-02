@@ -2,9 +2,8 @@
 import React from 'react'
 import Link from 'next/link'
 import { Button } from '@/components/ui/button'
-import { ArrowUp, Globe, Play, Plus, Sparkle } from 'lucide-react'
+import { ArrowUp, Globe, Plus, ShieldCheck, Sparkle } from 'lucide-react'
 import { motion, useScroll, useTransform } from 'motion/react'
-import { SITE } from '@/lib/site'
 
 export default function HeroSection() {
     const { scrollY } = useScroll()
@@ -18,8 +17,8 @@ export default function HeroSection() {
                     <div className="relative pb-36 pt-24 lg:pt-16">
                         <div className="relative z-10 mx-auto max-w-5xl px-6">
                             <div className="text-center">
-                                <h1 className="mx-auto mt-8 max-w-xl text-balance text-4xl font-semibold md:text-5xl">Run 70B models in your customer&apos;s metro. At Bedrock prices. Without your data leaving the city.</h1>
-                                <p className="text-muted-foreground mx-auto mb-8 mt-4 max-w-xl text-balance text-lg">A distributed Tier-3 inference fabric across 25+ metro pods. Multi-vendor GPU, zero egress, Kubernetes-native.</p>
+                                <h1 className="mx-auto mt-8 max-w-xl text-balance text-4xl font-semibold md:text-5xl">Sovereign inference, at Bedrock prices.</h1>
+                                <p className="text-muted-foreground mx-auto mb-8 mt-4 max-w-xl text-balance text-lg">Frontier 70B models in your customer&apos;s metro. Zero egress, cryptographic attestation, multi-vendor GPU &mdash; Kubernetes-native, from $0.95/M tokens.</p>
 
                                 <div className="flex items-center justify-center gap-3 max-sm:flex-col">
                                     <Button asChild>
@@ -32,9 +31,9 @@ export default function HeroSection() {
                                         asChild
                                         variant="outline"
                                         className="pl-3.5">
-                                        <Link href={SITE.docsUrl}>
-                                            <Play className="fill-foreground !size-3" />
-                                            <span className="text-nowrap">Read the docs</span>
+                                        <Link href="/security">
+                                            <ShieldCheck className="!size-4" />
+                                            <span className="text-nowrap">See the security model</span>
                                         </Link>
                                     </Button>
                                 </div>

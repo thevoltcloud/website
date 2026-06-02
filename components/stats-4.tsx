@@ -1,5 +1,12 @@
 import { cn } from '@/lib/utils'
 
+const stats = [
+    { value: '25+', label: 'Metro pods' },
+    { value: '99.9%', label: 'Uptime SLA' },
+    { value: '$0.95/M', label: 'Llama 70B tokens' },
+    { value: '$0', label: 'Egress fees, ever' },
+]
+
 export default function StatsSection() {
     return (
         <section className="bg-background @container py-16 md:py-24">
@@ -15,19 +22,13 @@ export default function StatsSection() {
                     <PlusDecorator className="bottom-0 right-0 translate-x-[calc(50%-0.5px)] translate-y-[calc(50%-0.5px)]" />
                     <PlusDecorator className="bottom-0 -translate-x-[calc(50%-0.5px)] translate-y-[calc(50%-0.5px)]" />
 
-                    <div className="**:text-center bg-card *:hover:bg-foreground/2 @xl:grid-cols-3 grid grid-cols-2 divide-x border *:p-8">
-                        <div className="space-y-2">
-                            <div className="bg-linear-to-t from-foreground to-muted-foreground bg-clip-text text-3xl font-medium text-transparent md:text-5xl">25+</div>
-                            <p className="text-muted-foreground text-sm">Metro pods</p>
-                        </div>
-                        <div className="@max-xl:border-0 space-y-2">
-                            <div className="bg-linear-to-t from-foreground to-muted-foreground bg-clip-text text-3xl font-medium text-transparent md:text-5xl">99.9%</div>
-                            <p className="text-muted-foreground text-sm">Uptime SLA</p>
-                        </div>
-                        <div className="@max-xl:hidden space-y-2">
-                            <div className="bg-linear-to-t from-foreground to-muted-foreground bg-clip-text text-3xl font-medium text-transparent md:text-5xl">$0.95/M</div>
-                            <p className="text-muted-foreground text-sm">Llama 70B tokens</p>
-                        </div>
+                    <div className="**:text-center bg-card *:hover:bg-foreground/2 @xl:grid-cols-4 @xl:divide-y-0 grid grid-cols-2 divide-x divide-y border *:p-8">
+                        {stats.map((stat) => (
+                            <div key={stat.label} className="space-y-2">
+                                <div className="bg-linear-to-t from-foreground to-muted-foreground bg-clip-text text-3xl font-medium text-transparent md:text-5xl">{stat.value}</div>
+                                <p className="text-muted-foreground text-sm">{stat.label}</p>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>

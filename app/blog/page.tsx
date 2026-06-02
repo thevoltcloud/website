@@ -11,7 +11,7 @@ const POSTS = [
     slug: "sovereign-inference",
     title: "Why sovereign inference is an architecture problem, not a policy one",
     date: "2026-06-01",
-    excerpt: "Data residency you can prove beats data residency you promise. Here&apos;s how zero egress changes the conversation.",
+    excerpt: "Data residency you can prove beats data residency you promise. Here's how zero egress changes the conversation.",
   },
 ];
 

@@ -11,10 +11,10 @@ export const metadata: Metadata = {
     default: `${SITE.name} — ${SITE.category}`,
     template: `%s — ${SITE.name}`,
   },
-  description: SITE.tagline,
+  description: SITE.description,
   openGraph: {
     title: `${SITE.name} — ${SITE.category}`,
-    description: SITE.tagline,
+    description: SITE.description,
     url: SITE.url,
     siteName: SITE.name,
     type: "website",

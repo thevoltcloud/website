@@ -21,7 +21,7 @@ const verticals = [
     title: "Financial services",
     icon: Landmark,
     description:
-      "Keep model inference and customer data inside the regulated boundary, served in-metro.",
+      "Answer the regulator's residency question with proof, not paperwork. Inference and customer data stay inside the boundary.",
     points: [
       "Zero egress — data residency is structural, not contractual",
       "Immutable audit log per request, tied to tenant identity",
@@ -32,7 +32,7 @@ const verticals = [
     title: "Healthcare",
     icon: HeartPulse,
     description:
-      "PHI never leaves the metro. Attestation answers auditor questions.",
+      "Show auditors exactly where PHI was processed. It never leaves the metro, and attestation proves it.",
     points: [
       "In-region serving with no cross-border transfer",
       "Workload identity via SPIRE/SPIFFE SVIDs",
@@ -43,7 +43,7 @@ const verticals = [
     title: "Public sector",
     icon: Building2,
     description:
-      "Sovereign-by-default deployments with a FedRAMP path.",
+      "Stand up sovereign-by-default workloads on a FedRAMP path — single-tenant, attested, in-region.",
     points: [
       "Zero-egress boundary maps to SC-7 boundary protection",
       "Measured-boot attestation on dedicated bare-metal (Vault)",
@@ -54,7 +54,7 @@ const verticals = [
     title: "AI-native products",
     icon: Sparkles,
     description:
-      "Frontier open-weights models at Bedrock-beating prices, without egress surprises.",
+      "Ship frontier models at Bedrock-beating prices — no egress bills, no rewrite, no surprises.",
     points: [
       "Llama 70B from $0.95/M — OpenAI-compatible drop-in",
       "Dedicated GPU leases scoped into your namespace",
