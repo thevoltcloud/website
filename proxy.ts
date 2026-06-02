@@ -7,7 +7,8 @@ import { resolveSession } from '@/lib/investor-store'
 // page is public (so people can request a link); the request/verify APIs aren't
 // matched (they must be reachable while signed out). Admin authorization is
 // enforced in the admin page + admin API, not here.
-export async function middleware(req: NextRequest) {
+// (Next 16 "proxy" convention — formerly middleware.ts.)
+export async function proxy(req: NextRequest) {
   const { pathname } = req.nextUrl
 
   if (pathname === '/investors/login') {
