@@ -22,7 +22,7 @@ export const runtime = 'nodejs'
 type Metric = { value: string; label: string; sub: string }
 type Financial = { metric: string; y: string[] }
 type Round = { round: string; year: string; raise: string; post: string; use: string }
-type Ask = { raise: string; seriesA: string; seriesAWindow: string }
+type Ask = { raise: string; seriesA: string; seriesAWindow: string; structure?: string }
 type InvestorData = { ask: Ask; metrics: Metric[]; financials: Financial[]; rounds: Round[] }
 
 function loadData(): Promise<InvestorData | null> {
@@ -78,6 +78,9 @@ export default async function InvestorRoomPage() {
                             </>
                         )}
                     </p>
+                    {data?.ask.structure && (
+                        <p className="text-muted-foreground/80 mt-4 text-sm">{data.ask.structure}</p>
+                    )}
                 </div>
 
                 {!data && (
@@ -145,6 +148,10 @@ export default async function InvestorRoomPage() {
                         {/* Funding roadmap */}
                         <section className="mt-16">
                             <h2 className="text-2xl font-semibold">Funding roadmap</h2>
+                            <p className="text-muted-foreground mt-2 text-sm">
+                                Equity rounds only — each card shows new capital raised and the post-money
+                                valuation it implies.
+                            </p>
                             <div className="mt-6 grid gap-4 md:grid-cols-2">
                                 {data.rounds.map((r) => (
                                     <Card key={r.round} className="p-6">
@@ -154,15 +161,16 @@ export default async function InvestorRoomPage() {
                                         </div>
                                         <div className="mt-3 flex items-baseline gap-2">
                                             <span className="text-primary text-2xl font-semibold">{r.raise}</span>
-                                            <span className="text-muted-foreground text-sm">raise · {r.post} post</span>
+                                            <span className="text-muted-foreground text-sm">raise · {r.post} post-money</span>
                                         </div>
                                         <p className="text-muted-foreground mt-3 text-sm">{r.use}</p>
                                     </Card>
                                 ))}
                             </div>
                             <p className="text-muted-foreground mt-4 text-xs">
-                                Separate non-dilutive GPU sale-leaseback provides $15M–$200M of capital across the
-                                plan.
+                                Separately, GPU hardware is funded by a non-dilutive debt facility (not equity) —
+                                $15M–$200M of capital across the plan. It is not shown above and does not dilute the
+                                equity rounds.
                             </p>
                         </section>
                     </>
