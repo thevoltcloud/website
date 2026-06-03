@@ -41,7 +41,7 @@ const features = [
 const reservedTerms = [
   "On-demand: full flexibility at list rate",
   "12-month reserved: 45% off on-demand",
-  "36-month reserved: 60% off on-demand, lands at $2.36/GPU/hr on B200",
+  "36-month reserved: ~44% below CoreWeave reserved, ~78% below CoreWeave on-demand, lands at $2.36/GPU/hr on B200",
 ];
 
 export default function Page() {
@@ -62,7 +62,7 @@ export default function Page() {
           <div className="mt-8 flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <span className="text-primary text-4xl font-bold">$2.36/GPU/hr</span>
             <span className="text-muted-foreground text-sm">
-              NVIDIA B200, 36-month reserved &mdash; 31% below CoreWeave list
+              NVIDIA B200, 36-month reserved &mdash; ~44% below CoreWeave reserved, ~78% below CoreWeave on-demand
             </span>
           </div>
 

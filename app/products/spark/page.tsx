@@ -25,7 +25,7 @@ const features = [
     {
         icon: ShieldCheck,
         title: 'Sovereign tier',
-        description: 'Pod-pinned inference with attestation. $1.45/M, about 45% below AWS Bedrock.',
+        description: 'Pod-pinned inference with attestation. $1.45/M — zero egress, sovereign, multi-vendor.',
     },
 ]
 

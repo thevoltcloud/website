@@ -64,19 +64,19 @@ export const SKUS: Sku[] = [
       "Sovereign tier with pod-pinned inference + attestation",
     ],
   },
-  {
-    slug: "forge",
-    name: "Volt Forge",
-    icon: "🔥",
-    summary: "GPU-as-a-service. Dedicated leases in your namespace.",
-    headlinePrice: "$2.36/GPU/hr",
-    priceNote: "NVIDIA B200, 36-month reserved — 31% below CoreWeave list",
-    bullets: [
-      "NVIDIA B200 and L40S capacity",
-      "Scoped kubeconfig into a dedicated namespace",
-      "Reserved terms: 45% off at 12-mo, 60% off at 36-mo",
-    ],
-  },
+    {
+      slug: "forge",
+      name: "Volt Forge",
+      icon: "🔥",
+      summary: "GPU-as-a-service. Dedicated leases in your namespace.",
+      headlinePrice: "$2.36/GPU/hr",
+      priceNote: "NVIDIA B200, 36-month reserved — ~44% below CoreWeave reserved, ~78% below CoreWeave on-demand",
+      bullets: [
+        "NVIDIA B200 and L40S capacity",
+        "Scoped kubeconfig into a dedicated namespace",
+        "Reserved terms: 45% off at 12-mo, 60% off at 36-mo",
+      ],
+    },
   {
     slug: "vault",
     name: "Volt Vault",

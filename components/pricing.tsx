@@ -14,7 +14,7 @@ export default function Pricing() {
     // Reserved = best 36-month rate (60% off on-demand — the locked reserved discount).
     // Spark is per-token (no term pricing); it stays flat and the subtext explains why.
     const prices = {
-        forge: { onDemand: 5.9, reserved: 2.36 },
+        forge: { onDemand: 5.4, reserved: 2.36 },
         vault: { onDemand: 212500, reserved: 85000 },
     }
 
@@ -128,7 +128,7 @@ export default function Pricing() {
                                 <ul
                                     role="list"
                                     className="space-y-3 text-sm">
-                                    {['Everything in Spark plus:', 'NVIDIA B200 + L40S capacity', 'Scoped kubeconfig into a dedicated namespace', 'Reserved: 45% off at 12-mo, 60% off at 36-mo', '31% below CoreWeave list', '99.9% uptime SLA (Tier III)'].map((item, index) => (
+                                    {['Everything in Spark plus:', 'NVIDIA B200 + L40S capacity', 'Scoped kubeconfig into a dedicated namespace', 'Reserved: 45% off at 12-mo, 60% off at 36-mo', '~44% below CoreWeave reserved, ~78% below CoreWeave on-demand', '99.9% uptime SLA (Tier III)'].map((item, index) => (
                                         <li
                                             key={index}
                                             className="group flex items-center gap-2 first:font-medium">

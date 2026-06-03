@@ -33,7 +33,7 @@ const faqItems = [
             {
                 id: 'item-2',
                 question: 'How does pricing compare to Bedrock?',
-                answer: 'Volt Spark serves Llama 70B at $0.95/M tokens standard and $1.45/M on the sovereign tier. The sovereign tier runs about 45% below AWS Bedrock at $2.65/M for the same model, with in-metro serving and zero egress included.',
+                answer: 'Volt Spark serves Llama 70B at $0.95/M tokens standard and $1.45/M on the sovereign tier — with zero egress, sovereign, and multi-vendor included.',
             },
             {
                 id: 'item-3',
